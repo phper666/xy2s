@@ -1,6 +1,8 @@
 # 校园淘物站
 
-如果想在此系统进行二次开发，请先去了解thinkphp5.0怎么使用。欢迎大家访问我的博客：http://www.liyuzhao.cn.此项目的演示地址在：http://www.xy2s.top
+如果想在此系统进行二次开发，请先去了解thinkphp5.0怎么使用。欢迎大家访问我的博客：http://www.liyuzhao.cn
+#此项目的演示地址在：
+http://www.xy2s.top
 
 ## 环境要求:
 * PHP >= 5.4.0(注意：PHP5.4dev版本和PHP6均不支持)
