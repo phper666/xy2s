@@ -8,4 +8,4 @@ define("ABSOLUTE_STATIC" ,"G:/wamp64/www/xy2s/public/static/");//定义js,img,cs
 define("GEN_URL","http://localhost/xy2s/");
 把localhost改为你的服务器ip，把G:/wamp64/www/改为你的www的硬盘路径
 第六步：在浏览器输入http://localhost/xy2s/index.php/home显示前台,http://localhost/xy2s/admin显示后台.服务器上的把localhost改为你的域名或者ip
-第七步：账号：admin 密码：liyuzhao  这个是超级管理员的。里面还有几个用户可以到es_admin表那里查看，密码都没有经过加密
+第七步：账号：admin 密码：liyuzhao  这个是超级管理员的。里面还有几个用户可以到es_admin表那里查看，密码都没有经过加密。
