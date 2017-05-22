@@ -1,0 +1,11 @@
+第一步：下载项目解压得到xy2s文件夹，直接复制到www目录下面
+第二步：开启apache的重写功能
+第三步：在mysql数据库里面创建一个gouwu的数据库，并把sqldata里面的数据导入进去。
+第四步：修改xy2s/application/database.php里面的数据库配置。
+第五步：修改xy2s/public/index.php这个文件的
+define("ABSOLUTE_HOME" ,"G:/wamp64/www/xy2s/public/static/home/");
+define("ABSOLUTE_STATIC" ,"G:/wamp64/www/xy2s/public/static/");//定义js,img,css的路径常量，前台
+define("GEN_URL","http://localhost/xy2s/");
+把localhost改为你的服务器ip，把G:/wamp64/www/改为你的www的硬盘路径
+第六步：在浏览器输入http://localhost/xy2s/index.php/home显示前台,http://localhost/xy2s/admin显示后台.服务器上的把localhost改为你的域名或者ip
+第七步：账号：admin 密码：liyuzhao  这个是超级管理员的。里面还有几个用户可以到es_admin表那里查看，密码都没有经过加密
