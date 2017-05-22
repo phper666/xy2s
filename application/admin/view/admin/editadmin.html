@@ -1,0 +1,78 @@
+[{include file="Admin/header" /}]  <!--包含头部文件-->
+<!--一个jq，用来选择用户后，就显示用户信息-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#select").change(function () {
+            var am_id = $("#select").attr("value");
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]Admin/am_msg",
+                data: "am_id=" + am_id,
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    var a = $.parseJSON(msg);
+                    $("#am_password").attr("value", a.am_password);
+                    $("#am_name").attr("value", a.am_name);
+                    $("#real_name").attr("value", a.real_name);
+                    $("#am_email").attr("value", a.am_email);
+                    $("#select1 option[value='" + a.role_id + "']").attr("selected", "selected");
+                }
+            });
+        });
+    });
+</script>
+<form action="[{$Think.const.APP_ADMIN_URL}]Admin/editadmin" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value=""/>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">修改登录名</td>
+            <td>
+                <select name="am_id" id="select">
+                    <!--循环出角色名-->
+                    [{foreach adminlist as $k=>$v }]
+                    <option value="[{$v.am_id}]">[{$v.am_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">新的登录名</td>
+            <td><input type="text" id="am_name" name="am_name" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">密码</td>
+            <td><input id="am_password" type="password" name="am_password"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">真实姓名</td>
+            <td><input id="real_name" type="text" name="real_name" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">邮箱</td>
+            <td><input id="am_email" type="text" name="am_email" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">角色</td>
+            <td>
+                <select name="role_id" id="select1">
+                    <!--循环出角色名-->
+                    [{foreach rolelist as $k=>$v }]
+                    <option value="[{$v.role_id}]">[{$v.role_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">更新</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Admin/adminlist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,53 @@
+[{include file="Gg/header" /}]   <!--包含头部文件-->
+<table id="table1" class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>公告ID</th>
+        <th>发布主题人</th>
+        <th>发布主题</th>
+        <th>状态(0为不显示，1为显示)</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach gglist as $k=>$v }]
+    <tr>
+        <td>[{$v.gg_id}]</td>
+        <td>[{$v.am_name}]</td>
+        <td>[{$v.gg_name}]</td>
+        <td>[{$v.gg_status}]</td>
+        <td>
+            <a value="[{$v.gg_id}]" href="#">删除</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<script>
+    /*简单的jq，获取标签a点击的值*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去无刷新更改状态*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Gg/delgg",
+                    data: "gg_id=" + id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('公告删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('公告删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

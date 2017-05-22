@@ -1,0 +1,113 @@
+[{include file="Forumpost/header" /}]  <!--包含头部文件-->
+<form id="post" action="[{$Think.const.APP_ADMIN_URL}]Forumpost/postguanli" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr width="15%">
+            <td width="10%" class="tableleft">栏目选择</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="fsc_id" id="jibie">
+                    <option value="0">默认</option>
+                    [{foreach f as $k=>$v }]
+                    <option value="[{$v.fsc_id}]">[{$v.fsc_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+    </table>
+</form>
+<!--选择什么栏目就显示什么栏目的信息-->
+<script>
+    $(document).ready(function () {
+        $('#jibie').change(function(){
+            var fsc = $('#jibie option:selected').attr('value');
+            if(fsc != '0'){
+                $('#post').attr("action","[{$Think.const.APP_ADMIN_URL}]Forumpost/postguanli?fsc_id="+fsc);
+                $('#post').submit();
+            }
+        });
+    });
+</script>
+<table id="table1" class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>帖子ID</th>
+        <th width="20%">帖子主题</th>
+        <th>帖子内容</th>
+        <th width="10%">是否顶置</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach p as $k=>$v }]
+    <tr>
+        <td>[{$v.fp_id}]</td>
+        <td>[{$v.fp_biaoti}]</td>
+        <td>[{$v.fp_content}]</td>
+        <td>
+            <select id="dingzhi" name="fp_id" style="width:70px;">
+                <option value="[{$v.fp_id}]">[{$v.fp_dingzhi}]</option>
+                <option value="[{$v.fp_id}]">是</option>
+                <option value="[{$v.fp_id}]">否</option>
+            </select>
+        </td>
+        <td>
+            <!--为了获取要删除的数据id-->
+            <a value="[{$v.fp_id}]" href="#">删帖</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>
+<script>
+    /*简单的jq，无刷新删除帖子*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var fp_id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Forumpost/post_del",
+                    data: "fp_id=" + fp_id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('栏目删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('栏目删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+       /* <!--简单的jq，用来更新是否顶置-->*/
+        $("#dingzhi").change(function () {
+            if (confirm("确定要更改顶置吗？")) {
+                var fp_dingzhi = $("#dingzhi").find("option:selected").text();
+                var fp_id = $("#dingzhi").attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Forumpost/post_dingzhi",
+                    data: "fp_dingzhi=" + fp_dingzhi+"&fp_id="+fp_id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '更新成功') {
+                            alert('顶置更新成功');
+                            window.location.reload();
+                        } else if (msg == '更新失败') {
+                            alert('顶置更新失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

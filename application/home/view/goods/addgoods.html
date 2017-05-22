@@ -1,0 +1,290 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                [{foreach userlist as $k=>$v }]
+                <div id="college">[{$v.school_name}]</div>
+                [{/foreach}]
+            </div>
+        </li>
+        <div id="xgpersonal" class="button" data-type="l" style="width:110px;">完善信息</div>
+        <div id="goodsfb" class="button" data-type="l" style="width:110px;">发布的商品</div>
+        <div id="msgtongzhi" class="button" data-type="l" style="width:110px;">消息通知</div>
+        <div id="modifypw" class="button" data-type="l" style="width:110px;">修改密码</div>
+        <div id="renzheng" class="button" data-type="l" style="width:110px;">认证</div>
+    </ul>
+</nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#xgpersonal").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xgpersonal";
+        });
+        $("#modifypw").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/modifypw";
+        });
+        $("#goodsfb").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsfb";
+        });
+        $("#msgtongzhi").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/msgtongzhi";
+        });
+        $("#renzheng").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/renzheng";
+        });
+    });
+</script>
+<div class="container">
+    <form id="addgoodsform" action="[{$Think.const.APP_HOME_URL}]Goods/addgoods" method="post">
+        <div class="main center">
+            <div class="release-icon-main"><img src="[{$Think.const.IMG_URL}]addgoods.png" alt=""/></div>
+            <div class="wave-fluid"></div>
+            <div class="release-title">
+                <iframe src="" id="exec_target" name="exec_target" scrolling="no"></iframe>    <!-- 提交表单处理iframe框架 -->
+                <iframe src="" id="exec_target1" name="exec_target" scrolling="no"></iframe>    <!-- 提交表单处理iframe框架 -->
+                <div id="feedback"></div>    <!-- 响应返回数据容器 -->
+            </div>
+            <input id="uploadgoods" type="file" name="upload_tupian"/>
+            <!--一个简单的jq，获取上传图片的文件名字-->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    fl = 0;  //这个是一个标记，表示上传了一个图片，如果上传不到两个图片就提示错误,全局变量
+                    var jishi = 0;
+                    //让选择的图片显示到页面上,用了uploadify
+                    $('#uploadgoods').uploadify({
+                        'swf': '[{$Think.const.STATIC_URL}]swf/uploadify.swf',
+                        'uploader': '[{$Think.const.APP_HOME_URL}]Goods/upload',
+                        'fileTypeExts': '*.gif; *.jpg; *.png',  //只允许上传的类型
+                        'queueID': 'jdt',
+                        'buttonText': '上传商品图片',
+                        'fileSizeLimit': '2MB',
+                        'width': '180',
+                        'method': 'POST',  //如果要传参数，就必须改为GET
+                        'uploadLimit'     : 99,     //允许上传的最多张数
+                        'onUploadSuccess': function (file, data, response) {
+                            fl = fl + 1;
+                            //因为TP5返回了一个html文本，必须要截取才能获得路径
+                            a = data.substring(0, data.indexOf('<div'));
+                            //因为TP5返回了一个html文本，必须要截取才能获得路径,这里如果不关调试就用下面这个
+                            //a = data.substring(0, data.indexOf('<div'));
+                            //关了调试用这个
+                            //a = data;
+
+                            $('#exec_target').css('display','inline');
+                            $('#exec_target1').css('display','inline');
+                            $('#exec_target2').css('display','inline');
+                            jishi = jishi + 1;
+                            if(jishi == 1){
+                                $('#exec_target').attr('src', a);
+                            }else if(jishi == 2){
+                                $('#exec_target1').attr('src', a);
+                                jishi = 0;
+                            }
+
+                            /* window.location.reload();*/
+                        },
+                        'onSelectError': function (file, errorCode, errorMsg) {
+                            this.queueData.errorMsg = '图片只支持上传2MB内,且不能同名';
+                        }
+                    });
+                });
+            </script>
+
+            <!--一个简单的jq，一点击上传图片就触发input控件-->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".upload-tupian").click(function () {
+                        $(".upload").click();
+                    });
+                    /*鼠标一触动到上传图片，图片变色*/
+                    $(".upload-tupian").mouseover(function () {
+                        $(".upload-tupian img")[0].src = "[{$Think.const.IMG_URL}]5-1.png";
+                    });
+                    /*鼠标一离开上传图片，图片变回原色*/
+                    $(".upload-tupian").mouseout(function () {
+                        $(".upload-tupian img")[0].src = "[{$Think.const.IMG_URL}]5.png";
+                    });
+                });
+            </script>
+            <div class="photo-caution"><span>必须上传二张图片，支持jpg、png、gif格式</span></div>
+            <div class="goods-name">商品名称：<input type="text" name="goods_name" placeholder="不要超过20个字"/></div>
+            <div class="goods-desc">
+                <div class="ms">商品描述：</div>
+                <textarea name="goods_desc" placeholder="建议填写物品用途、新旧程度、原价等信息，5到200字内"></textarea></div>
+            <div class="goods-place">交易地点：<input type="text" name="goods_place" placeholder="不要超过20个字"/></div>
+            <div id="yuanjia" class="goods-price">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<input type="text" name="cost_price"/></div>
+            <div id="newjia" class="goods-price">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<input type="text" name="goods_price"/></div>
+            <div id="goods_number" class="goods-price">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<input type="text" name="goods_number"/></div>
+            <div class="goods-category">商品分类：
+                <select id="goods-category1" name="goods_category">
+                    <option value="0">请选择</option>
+                    [{foreach category as $k=>$v }]
+                    [{if $v.cat_level == 0 }]
+                    <option value="[{$v.cat_id}]">[{$v.cat_name}]</option>
+                    [{/if}]
+                    [{/foreach}]
+                </select>
+            </div>
+            <!--这里要换name-->
+            <div class="goods-category">商品品牌：
+                <select id="goods-category2" name="goods_pp">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+            <!--一个jq，二级联动-->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#goods-category1").change(function () {
+                        var cat_id = $("#goods-category1 option:selected").attr("value");
+                        $.ajax({
+                            type: "POST",
+                            url: "[{$Think.const.APP_HOME_URL}]Goods/category_msg",
+                            data: "cat_id=" + cat_id,
+                            async: true, //默认为true 异步
+                            error: function () {
+                                alert('error');
+                            },
+                            success: function (msg) {
+                                msg = $.parseJSON(msg); //因为接收的为字符串，要转换为对象
+                                $.each(msg,function(k,v){
+                                    $("#goods-category2").append("<option value='"+v.cat_id+"'>"+v.cat_name+"</option>");
+                                });
+                            }
+                        });
+                    });
+                });
+            </script>
+            <div class="goods-category">商品新度：
+                <select id="goods_new"name="goods_new">
+                    <option value="0">请选择</option>
+                    <option value="1">一层新</option>
+                    <option value="2">二层新</option>
+                    <option value="3">三层新</option>
+                    <option value="4">四层新</option>
+                    <option value="5">五成新</option>
+                    <option value="6">六成新</option>
+                    <option value="7">七层新</option>
+                    <option value="8">八层新</option>
+                    <option value="9">九层新</option>
+                    <option value="10">全新</option>
+                </select>
+            </div>
+            <!--这里要换name-->
+            <div class="goods-category">可以小刀：
+                <select name="goods_jiangjia">
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+            </div>
+            <div class="lianxi">联系方式（必须要填一个）</div>
+            <div class="user-tel">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：<input type="text" name="user_tel"/>
+            </div>
+            <div class="user-qq">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q：<input type="text" name="user_qq"/>
+            </div>
+            <div class="rule">
+                <input id="form-share" name="goods_role" type="checkbox" checked="checked" value="yes"/>
+                <span>我同意&nbsp;<a href="#" target="_blank">商品发布规则</a></span>
+            </div>
+            <div class="goods-fabu">现在发布</div>
+            <!--一个简单的jq，触发提交发布按钮-->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var a = /^([1-9]\d{0,5}|1000000)$/;     //正数字1-1000000正则
+                    var b = /^[1-9]\d{4,12}$/;   //qq正则5到13位，首位不能为0
+                    var c = /^1[34578]\d{9}$/; //电话号码正则
+                    $(".goods-fabu").click(function () {
+                        var yuanjia = $("#yuanjia input").val();     //原价格
+                        var newjia = $("#newjia input").val();     //新价格
+                        var goods_number = $("#goods_number input").val();     //数量
+                        var qq = $(".user-qq input").val();     //qq
+                        var tel = $(".user-tel input").val();     //电话
+                        var name = $(".goods-name input").val();     //商品名
+                        var desc = $(".goods-desc textarea").val();     //商品描述
+                        var place = $(".goods-place input").val();     //交易地方
+                        var g1 = $("#goods-category1 option:selected").attr("value");    //商品分类
+                        var g2 = $("#goods-category2 option:selected").attr("value");    //商品品牌
+                        var g3 = $("#goods-new option:selected").attr("value");    //商品新度
+                        var share = $("#form-share").attr("checked");    //商品规则
+
+                        if(tel == '' && qq == ''){
+                            alert('手机或者QQ必填一个');
+                            return false;
+                        }
+                        if(newjia == ''){
+                            alert('价格不能为空');
+                            return false;
+                        }
+                        if(!a.test(newjia)){
+                            alert('价格只能为1-1000000的整数');
+                            return false;
+                        }
+                        if(yuanjia == ''){
+                            alert('原价格不能为空');
+                            return false;
+                        }
+                        if(!a.test(yuanjia)){
+                            alert('价格只能为1-1000000的整数');
+                            return false;
+                        }
+                        if(goods_number == ''){
+                            alert('数量不能为空');
+                            return false;
+                        }
+                        if(!a.test(goods_number)){
+                            alert('数量只能为1-1000000的整数');
+                            return false;
+                        }
+                        if(qq != ''){
+                            if(!b.test(qq)){
+                                alert('QQ格式错误');
+                                return false;
+                            }
+                        }
+                        if(tel != ''){
+                            if(!c.test(tel)){
+                                alert('手机格式错误');
+                                return false;
+                            }
+                        }
+                        if(name.length > '20' || name == ''){
+                            alert('商品名有问题');
+                            return false;
+                        }
+                        if(desc.length < '5' || desc.length > '200'){
+                            alert('商品描述字数有问题');
+                            return false;
+                        }
+                        if(place.length > '20' || place == ''){
+                            alert('交易地点字数有问题');
+                            return false;
+                        }
+                        if(g1 == 0){
+                            alert('请选择商品分类');
+                            return false;
+                        }
+                        if(g2 == 0){
+                            alert('请选择商品品牌');
+                            return false;
+                        }
+                        if(g3 == 0){
+                            alert('请选择商品新度');
+                            return false;
+                        }
+                        if(share != 'checked'){
+                            alert('对不起，请同意商品发布规则再发布，否则你无权发布');
+                            return false;
+                        }
+                        if(fl == 0 || fl == 1){
+                            alert('请上传两张商品图片');
+                            return false;
+                        }
+                        $("#addgoodsform").submit();
+                    });
+                });
+            </script>
+        </div>
+    </form>
+</div>
+
+<div class="return-to-top" style="display: none;"><a href=""></a></div>

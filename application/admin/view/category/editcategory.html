@@ -1,0 +1,56 @@
+[{include file="Category/header" /}]  <!--包含头部文件-->
+<!--一个jq，用来选择用户后，就显示用户信息-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#select").change(function () {
+            var cat_id = $("#select option:selected").attr("value");
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]Category/category_msg",
+                data: "cat_id=" + cat_id,
+                dataType: 'json',
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    $("#cat_desc").attr("value", msg.cat_desc);
+                    $("#cat_name").attr("value", msg.cat_name);
+                }
+            });
+        });
+    });
+</script>
+<form action="[{$Think.const.APP_ADMIN_URL}]Category/editcategory" method="post" class="definewidth m20">
+    <input type="hidden" name="id" value=""/>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">修改栏目名</td>
+            <td>
+                <select name="cat_id" id="select">
+                    <!--循环出栏目名-->
+                    [{foreach categorylist as $k=>$v }]
+                    <option value="[{$v.cat_id}]">[{$v.cat_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">新的栏目名</td>
+            <td><input type="text" id="cat_name" name="cat_name" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">栏目描述</td>
+            <td><input type="text" id="cat_desc" name="cat_desc" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">更新</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Category/categorylist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

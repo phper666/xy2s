@@ -1,0 +1,15 @@
+[{include file="Forumpost/header" /}]  <!--包含头部文件-->
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>总栏目ID || 名称</th>
+        <th>子栏目ID || 名称</th>
+    </tr>
+    </thead>
+    [{foreach fac as $k=>$v }]
+    <tr>
+        <td>[{$v.fac_id}] || [{$v.fac_name}]</td>
+        <td>[{foreach fsc as $k1=>$v1 }][{if $v.fac_id==$v1.fac_id }][{$v1.fsc_id}] || [{$v1.fsc_name}][{/if}][{/foreach}]</td>
+    </tr>
+    [{/foreach}]
+</table>

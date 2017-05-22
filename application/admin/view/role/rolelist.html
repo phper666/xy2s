@@ -1,0 +1,21 @@
+[{include file="Role/header"/}]  <!--包含公共头部文件-->
+<table class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>角色名称</th>
+        <th>控制器-方法</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach rolelist as $k=>$v }]
+    <tr>
+        <td>[{$k+1}]</td>
+        <td>[{$v.role_name}]</td>
+        <td width="800">[{$v.role_auth_ac}]</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]Role/editrole">编辑</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>

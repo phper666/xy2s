@@ -1,0 +1,36 @@
+[{include file="Gg/header" /}]   <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Gg/addgg" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <!--隐藏管理者id-->
+        <input type="hidden" name="am_id" value="[{$Think.Session.am_id}]">
+        <tr width="15%">
+            <td width="15%" class="tableleft">发布公告管理者：</td>
+            <td><input readonly="true" type="text" name="am_name" value="[{$Think.Session.am_name}]"/></td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">标题：</td>
+            <td><input type="text" name="gg_name"/></td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">内容</td>
+            <td width="85%" class="tableleft">
+                <textarea id="gg_content" name="gg_content" rows="8" cols="50"></textarea>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">是否显示：</td>
+            <td>YES：<input checked="checked" type="radio" name="gg_status" value="yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                NO：<input type="radio" name="gg_status" value="no">
+            </td>
+        </tr>
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Gg/Gglist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

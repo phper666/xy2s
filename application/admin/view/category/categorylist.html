@@ -1,0 +1,24 @@
+[{include file="Category/header" /}]  <!--包含头部文件-->
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>栏目ID</th>
+        <th>栏目名称</th>
+        <th>栏目描述</th>
+        <th>栏目等级</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach categorylist as $k=>$v }]
+    <tr>
+        <td>[{$v.cat_id}]</td>
+        <td>[{$v.cat_name}]</td>
+        <td>[{$v.cat_desc}]</td>
+        <td>[{$v.cat_level}]级</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]Category/addcategory">添加栏目</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

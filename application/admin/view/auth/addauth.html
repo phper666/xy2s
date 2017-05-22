@@ -1,0 +1,122 @@
+[{include file="Auth/header" /}]  <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Auth/addauth" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="10%" class="tableleft">权限等级</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="auth_level" id="jibie">
+                    <option value="0">0级</option>
+                    <option value="1">一级</option>
+                    <option value="2">二级</option>
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">权限名称</td>
+            <td><input type="text" name="auth_name"/></td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">从属顶级权限</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="auth_dingji_id" id="congshud">
+                    <option value="">默认</option>
+                    [{foreach authlist as $k=>$v }]
+                    [{if $v.auth_level == 0 }]
+                    <option value="[{$v.auth_id}]">[{$v.auth_name}]</option>
+                    [{/if}]
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">从属一级权限</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="auth_yiji_id" id="congshuy">
+                    <option value="">默认</option>
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">控制器</td>
+            <td><input id="auth_c" type="text" name="auth_c"/></td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">方法</td>
+            <td><input id="auth_a" type="text" name="auth_a"/></td>
+        </tr>
+        <!--
+        1：一个简单的jq，如果选择0级则不显示从属权限，选择一级，只有从属一级不显示，选择二级，控制器不显示
+        2：选择二级权限的时候，只要选择顶级的权限就会自动出现从属这个顶级权限的一级权限
+        -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#congshud").attr('disabled', true);
+                $("#congshuy").attr('disabled', true);
+                $("#auth_c").attr('readonly', true);
+                $("#auth_a").attr('readonly', true);
+                $("#jibie").change(function () {
+                    if (($("#jibie>option:selected").attr('value') == "0")) {
+                        $("#congshud").attr('disabled', true);       //不能接收，不能编辑
+                        $("#congshuy").attr('disabled', true);
+                        $("#auth_c").attr('readonly', true);     //能接收，但不能编辑
+                        $("#auth_a").attr('readonly', true);
+                    } else if (($("#jibie>option:selected").attr('value') == "1")) {   //选择一级，就不能选择从属一级，但能选顶级
+                        $("#congshud").attr('disabled', false);
+                        $("#congshuy").attr('disabled', true);
+                        $("#auth_a").attr('readonly', false);
+                        $("#auth_c").attr('readonly', false);
+                    } else {
+                        $("#congshud").attr('disabled', false);
+                        $("#congshuy").attr('disabled', false);
+                        $("#auth_a").attr('readonly', false);
+                        $("#congshud").change(function () {
+                            //用ajax来完成第二个逻辑
+                            var a = $("#congshud").attr('value');
+                            $.ajax({
+                                type: "POST",
+                                url: "[{$Think.const.APP_ADMIN_URL}]Auth/auth_msg",
+                                data: "auth_id=" + a,
+                                async: true, //默认为true 异步
+                                error: function () {
+                                    alert('error');
+                                },
+                                success: function (msg) {
+                                    var a = $.parseJSON(msg);
+                                    //每次点击都要移除掉，保留一个默认
+                                    $("#congshuy option").remove();
+                                    $("#congshuy").append("<option value=''>默认</option>");
+                                    //动态创建option，并赋值
+                                    $.each(a, function (k, v) {
+                                        $("#congshuy").append("<option auth_c='" + v.auth_c + "'  value='" + v.auth_id + "'>" + v.auth_name + "</option>");
+                                    });
+                                    //用ajax,选择一级权限就显示出固有的控制器
+                                    $("#congshuy").change(function () {
+                                        $("#auth_c").attr('value', $("#congshuy option:selected").attr('auth_c'));
+                                    });
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+        </script>
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Auth/authlist" class="btn btn-success" name="backid" id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<script>
+    $(function () {
+        $('#backid').click(function () {
+            window.location.href = "index.html";
+        });
+
+    });
+</script>

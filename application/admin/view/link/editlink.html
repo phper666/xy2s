@@ -1,0 +1,64 @@
+[{include file="Link/header" /}]   <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Link/editlink" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="15%" class="tableleft">链接名：</td>
+            <td width="15%" class="tableleft">
+                <select name="link_id" id="link">
+                    [{foreach linklist as $k=>$v }]
+                    <option value="[{$v.link_id}]"
+                    ">[{$v.link_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">新的链接名：</td>
+            <td width="85%" class="tableleft">
+                <input type="text" name="link_name"/>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">链接：</td>
+            <td width="85%" class="tableleft">
+                <input type="text" id="link_link"/>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">新的链接：</td>
+            <td width="85%" class="tableleft">
+                <input type="text" name="link_link"/>
+            </td>
+        </tr>
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">修改</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Gg/Gglist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#link_link").attr('disabled', true);
+            $("#link").change(function () {
+                var link_id = $("#link option:selected").val();
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Link/link_msg",
+                    data: "link_id=" + link_id,
+                    dataType: 'json',
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('error');
+                    },
+                    success: function (msg) {
+                        $("#link_link").attr('value', msg.link_link);
+                    }
+                });
+            });
+        });
+    </script>
+</form>

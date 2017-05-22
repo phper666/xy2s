@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+    <title>重置密码</title>
+</head>
+<!--一个简单的JQ，用于验证新密码是否一致，和任意项不能为空-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("button").click(function () {
+            if ($("#password").val() == '' || $("#question").val() == '' || $("#username").val() == '' || $("#fpassword").val() == '' || $("#answer").val() == '') {
+                alert('任意一项都不能为空');
+                return false;
+            }
+            if ($("#password").attr("value") != $("#fpassword").attr("value")) {
+                alert("密码不一致！");
+                return false;
+            }
+        });
+    });
+</script>
+<!--一个简答的jq，发送用户名到后台查询出密保问题-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#username").blur(function () {
+            var um = $("#username").val();
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_HOME_URL}]User/check_user",
+                data: "username=" + um,
+                dataType: 'json',
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    if (msg == 'false') {
+                        $("#yh").html('对不起,用户不存在');
+                    } else {
+                        $("#question").attr('value', msg.question);
+                    }
+                }
+            });
+        });
+    });
+</script>
+<body>
+<h2 style="text-align:center;">重置密码</h2>
+<form action="" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="margin:0 0 0 41%;">
+        <tr>
+            <td width="20%" class="tableleft">用户名</td>
+            <td><input id="username" type="text" name="username" placeholder="用户名"/><span id="yh"></span></td>
+        </tr>
+        <tr>
+            <td width="20%" class="tableleft">密保问题</td>
+            <td><input readonly="readonly" id="question" type="text" name="question" placeholder="密保问题"/>(不可编辑)</td>
+        </tr>
+        <tr>
+            <td width="20%" class="tableleft">密保答案</td>
+            <td><input id="answer" type="text" name="answer" placeholder="密保答案"/></td>
+        </tr>
+        <tr>
+            <td width="20%" class="tableleft">新密码</td>
+            <td><input id="password" type="password" name="password"/></td>
+        </tr>
+        <tr>
+            <td width="20%" class="tableleft">确认密码</td>
+            <td><input id="fpassword" type="password" name="fpassword"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <a style="text-decoration:none;" href="[{$Think.const.APP_HOME_URL}]Index/index" class="btn btn-success"
+                   name="backid" id="backid">返回首页</a>&nbsp;
+                <button type="submit" class="btn btn-primary" type="button">重置密码</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

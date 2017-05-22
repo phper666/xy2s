@@ -1,0 +1,32 @@
+[{include file="Forumpost/header" /}]  <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Forumpost/addforumpost" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr width="15%">
+            <td width="10%" class="tableleft">总栏目</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="fac_id" id="jibie">
+                    [{foreach faclist as $k=>$v }]
+                    <option value="[{$v.fac_id}]">[{$v.fac_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">栏目名</td>
+            <td><input type="text" name="fsc_name" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">栏目描述</td>
+            <td><input type="text" name="fsc_desc" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Forumpost/forumpost" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

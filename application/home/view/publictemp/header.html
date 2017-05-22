@@ -1,0 +1,154 @@
+<!doctype html public "-//w3c//dtd xhtml 1.0 frameset//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-frameset.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>校园淘物站</title>
+    <meta name="keywords" content="校园淘物站">
+    <meta name="description" content="校园淘物站">
+    <link rel="stylesheet" type="text/css" href="[{$Think.const.STATIC_URL}]css/uploadify.css"/>
+    <link rel="stylesheet" type="text/css" href="[{$Think.const.CSS_URL}]init.css">
+    <link rel="stylesheet" type="text/css" href="[{$Think.const.CSS_URL}]main.css">
+    <link rel="stylesheet" type="text/css" href="[{$Think.const.CSS_URL}]index.css">
+    <link rel="stylesheet" type="text/css" href="[{$Think.const.CSS_URL}]animate.css">
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]box_style.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]personal.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]goodsfb.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]modifypw.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]addgoods.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]fancybox-1.3.1.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]detail.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.GEN_URL}]public/plug/umeditor/themes/default/css/umeditor.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]forum_common.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]forum_index.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]forum_display.css"/>
+    <link type="text/css" rel="stylesheet" href="[{$Think.const.CSS_URL}]forum_2.css"/>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.cookie.js"></script>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.uploadify.min.js"></script>
+    <script src="[{$Think.const.STATIC_URL}]home/js/common.js"></script>
+    <script charset="utf-8" src="[{$Think.const.GEN_URL}]public/plug/umeditor/umeditor.config.js"></script>
+    <script charset="utf-8" src="[{$Think.const.GEN_URL}]public/plug/umeditor/umeditor.min.js"></script>
+    <script charset="utf-8" src="[{$Think.const.GEN_URL}]public/plug/umeditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body style="background:#F7F5F5;">
+<header class="ease2">
+    <div id="logo"><img src="[{$Think.const.IMG_URL}]logo.png" alt=""></div>
+    <div id="top-nav">
+        <ul>
+            <li class="nav_li" id="li_index"><a href="[{$Think.const.APP_HOME_URL}]Index/index">淘物首页</a></li>
+            <li class="nav_li" id="select-school"><a href="javascript:" data-type="l">学校选择</a></li>
+            <!--学校选择已经放进home下面的common中-->
+            <li class="nav_li"><a class="grzx" href="[{$Think.const.APP_HOME_URL}]Personal/personal">个人中心</a></li>
+            <li class="nav_li"><a href="[{$Think.const.APP_HOME_URL}]Forum/index?fac_id=5">论坛天地</a></li>
+            <li class="nav_li"><a href="[{$Think.const.APP_HOME_URL}]Msg/suggest">意见反馈</a></li>
+        </ul>
+        <!--导航选中状态已经放进home下面的common中-->
+    </div>
+    <div class="search-box-wr ease2">
+        <div class="search">
+            <form class="search-box center" action="[{$Think.const.APP_HOME_URL}]Search/searchgoods" method="post">
+                <select id="ss" name="search" class="select-value">
+                    <option value="1">搜索物品</option>
+                   <!-- <option value="2">求购信息</option>-->
+                </select>
+                <button type="submit" class="search-submit">搜索</button>
+                <input class="search-input" name="keyword" id="keyword" type="text" placeholder="搜索你想要的淘货">
+            </form>
+            <!--一个简单的jq，如果选择搜索物品，就跳转到搜索物品方法，如果选择求购，就跳转到求购方法-->
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $(".search-submit").click(function(){
+                        var search = $('#ss option:selected').attr('value');
+                        if(search == 1){
+                            $('.search-box').attr("action","[{$Think.const.APP_HOME_URL}]Search/searchgoods");
+                        }else if(search == 2){
+                            $('.search-box').attr("action","[{$Think.const.APP_HOME_URL}]Search/tobuymsg");
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <div id="no_login" class="log-reg ease2">
+        <div id="login" class="button" data-type="l">登录</div>
+        <div id="register" class="button" data-type="r">注册</div>
+        <script type="text/javascript">
+            /*一个简单的JQ，登录和注册的链接*/
+            $(document).ready(function(){
+                $("#login").click(function () {
+                    window.location.href = "[{$Think.const.APP_HOME_URL}]User/login";
+                });
+                $("#register").click(function () {
+                    window.location.href = "[{$Think.const.APP_HOME_URL}]User/register";
+                });
+                $("#select-school a").click(function () {
+                    window.location.href = "[{$Think.const.APP_HOME_URL}]Index/check_school";
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /*一个简单的jq用于判断用户是否登录，如果没登录就无法进去个人中心*/
+            $(document).ready(function () {
+                if ($.cookie('username') != null) {
+                    $("#no_login").css('display', 'none');
+                    $("#login_success").css('display', 'block');
+                } else {
+                    $("#login_success").css('display', 'none');
+                    $("#no_login").css('display', 'block');
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            /*鼠标点到就显示出个人中心的选项*/
+            $(document).ready(function () {
+                $(function () {
+                    $("#have_login").mouseover(function () {
+                        $(".login_border").css('display', 'block')
+                        $(".login_slider").css('display', 'block')
+                    });
+                    $(".login_slider").mouseout(function () {
+                        $(".login_border").css('display', 'none')
+                        $(".login_slider").css('display', 'none')
+                    });
+                    $(".main").mouseout(function () {
+                        $(".login_border").css('display', 'none')
+                        $(".login_slider").css('display', 'none')
+                    });
+                });
+            });
+        </script>
+
+    </div>
+    <div id="login_success" class="log-reg ease2" style="display:none;">
+        <div id="have_login" class="clearfix">
+            <div id="person_info" class="clearfix">
+                <img class="avatar" src="[{$Think.const.IMG_URL}][{$Think.Cookie.user_img}]">
+                <div class="person_name">欢迎您！[{$Think.Cookie.username}]</div>
+            </div>
+            <img class="login_border" src="" style="display: none;">
+            <div class="login_slider" style="display: none;">
+                <h3>嗨，<span>[{$Think.Cookie.account_name}]同学</span></h3>
+                <ul>
+                    <li><a href="[{$Think.const.APP_HOME_URL}]Personal/personal">个人中心</a></li>
+                    <li><a id="logout" href="[{$Think.const.APP_HOME_URL}]User/logout">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<nav class="personal-ease1">
+    <ul>
+        <li class="area">
+            <div id="goodsfabu"><a href="[{$Think.const.APP_HOME_URL}]Goods/addgoods">商品发布</a></div>
+        </li>
+        <li class="area">
+            <div id="goodsyh"><a href="">我们一共拥有<span class="num">[{$Think.Cookie.user_num}]</span>个用户</a></div>
+        </li>
+        <li class="area">
+            <div id="goodsjy"><a href="">完成了<span class="num">[{$Think.Cookie.goods_jiaoyi}]</span>笔交易</a></div>
+        </li>
+        <li class="area">
+            <div id="goodsxz"><a href="">闲置商品<span class="num">[{$Think.Cookie.goods_num}]</span>件</a></div>
+        </li>
+    </ul>
+</nav>

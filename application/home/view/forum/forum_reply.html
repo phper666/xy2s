@@ -1,0 +1,392 @@
+<div id="hd">
+    <div class="wp">
+        <div class="hdc cl">
+            <h2><a href="#">
+                <form method="post" autocomplete="off" id="lsform" action="#">
+                    <div class="fastlg cl">
+                        <span id="return_ls" style="display:none"></span>
+                        <div class="y pns"></div>
+                </form>
+
+        </div>
+        <div id="nv" style="top: 0px; left: 194.5px; z-index: 199;">
+            <ul>
+                [{foreach faclist as $k=>$v }]
+                <li id="forum_index"><a href="[{$Think.const.APP_HOME_URL}]Forum/index?fac_id=[{$v.fac_id}]">[{$v.fac_name}]</a>
+                </li>
+                [{/foreach}]
+            </ul>
+        </div>
+    </div>
+    <div id="scbar" class="scbar_narrow cl">
+        <form id="scbar_form" method="post" autocomplete="off" action="[{$Think.const.APP_HOME_URL}]Forum/forum_post"
+              target="_blank">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="scbar_icon_td"></td>
+                    <td class="scbar_txt_td">
+                        <input type="text" name="srchtxt" id="scbar_txt" class=" xg1" placeholder="请输入搜索内容"></td>
+                    <td class="scbar_type_td"><a href="javascript:;" id="scbar_type" class="xg1">帖子</a></td>
+                    <td class="scbar_btn_td">
+                        <button name="srch_submit" value="true" type="submit" id="scbar_btn" sc="1" class="pn pnc">
+                            <strong class="xi2">搜索</strong></button>
+                    </td>
+                    <td class="scbar_hot_td">
+                        <div id="scbar_hot">
+                            <strong class="xw1">热搜: </strong>
+                            <a href="#" target="_blank" class="xi2" sc="1">网页游戏</a>
+                            <a href="#" target="_blank" class="xi2" sc="1">交友</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--以上为头部-->
+
+<div id="wp" class="wp">
+    <div id="pt" class="bm cl">
+        <style id="diy_style" type="text/css"></style>
+        <!--[diy=diynavtop]-->
+        <div id="diynavtop" class="area"></div><!--[/diy]-->
+        <div class="z">
+            <a href="[{$Think.const.APP_HOME_URL}]Forum/index?fac_id=[{$_GET['fac_id']}]}]" class="nvhm"></a><em>»</em>
+            <a href="[{$Think.const.APP_HOME_URL}]Forum/index?fac_id=[{$_GET['fac_id']}]}]/">首页</a> <em>›</em>
+            <a href="[{$Think.const.APP_HOME_URL}]Forum/forum_post?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]">网站发帖</a><em>›</em>
+            <a href="">[{$p.fp_biaoti}]</a></div>
+    </div>
+    <div id="ct" class="wp cl">
+        <div id="pgt" class="pgs mbm cl pbm bbs">
+            <div class="pgt"></div>
+            <span class="y pgb"><a
+                    href="[{$Think.const.APP_HOME_URL}]Forum/forum_post?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]">返回列表</a></span>
+            <a id="newspecial"
+               href="[{$Think.const.APP_HOME_URL}]Forum/forum_post?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]"
+               title="发新帖"><img src="[{$Think.const.IMG_URL}]pn_post.png" alt="发新帖"></a><a
+                id="post_reply" style="cursor: pointer;" title="回复"><img src="[{$Think.const.IMG_URL}]pn_reply.png"
+                                                                         alt="回复"></a>
+            <!--点击回复，就获得文本框焦点-->
+            <script>
+                $('#post_reply').click(function () {
+                    $("#myEditor").focus();
+                });
+            </script>
+        </div>
+        <ul class="p_pop" id="newspecial_menu" style="display: none">
+            <li><a href="#">发表帖子</a></li>
+        </ul>
+        <div id="modmenu" class="xi2 pbm"><!--<a href="javascript:;">删除主题</a>-->
+            <div id="postlist" class="pl bm">
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td class="pls ptn pbn">
+                            <div class="hm ptn">
+                                <span class="xg1">浏览:</span> <span class="xi1">[{$p.click_count}]</span><span
+                                    class="pipe">|</span><span
+                                    class="xg1">回复:</span> <span class="xi1">[{$fc+1}]</span>
+                            </div>
+                        </td>
+                        <td class="plc ptm pbn vwthd">
+                            <div class="y">
+                                <a href="[{$Think.const.APP_HOME_URL}]Forum/forum_reply?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]&fp_id=[{$_GET['fp_id']-1}]"
+                                   title="上一主题"><img src="[{$Think.const.IMG_URL}]thread-prev.png" alt="上一主题"
+                                                     class="vm"></a>
+                                <a href="[{$Think.const.APP_HOME_URL}]Forum/forum_reply?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]&fp_id=[{$_GET['fp_id']+1}]"
+                                   title="下一主题"><img src="[{$Think.const.IMG_URL}]thread-next.png" alt="下一主题"
+                                                     class="vm"></a>
+                            </div>
+                            <h1 class="ts">
+                                <span id="thread_subject">标题：[{$p.fp_biaoti}]</span>
+                            </h1>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table cellspacing="0" cellpadding="0" class="ad">
+                    <tbody>
+                    <tr>
+                        <td class="pls"></td>
+                        <td class="plc"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="post_1">
+                    <table id="pid1" class="plhin" summary="pid1" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td class="pls" rowspan="2">
+                                <div id="favatar1" class="pls favatar">
+                                    <a name="lastpost"></a>
+                                    <div class="pi">
+                                        <div class="authi">
+                                            <a href="#" target="_blank" class="xw1">发帖人：[{$un.username}]</a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="avatar1">
+                                            <a href="#" class="avtm" target="_blank">
+                                                <img src="[{$Think.const.IMG_URL}][{$un.user_img}]">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="tns xg2">
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr>
+                                                <th><p><a href="#" class="xi2">[{$post_count}]</a></p>主题</th>
+                                                <th><p><a href="#" class="xi2">[{$post_count}]</a></p>帖子</th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    [{if $banzhu.am_name==$un.username }]
+                                    <p class="cp_pls cl">
+                                        <span style="color:red;margin-left:35px;">超级版主</span>
+                                    </p>
+                                    [{/if}]
+                                    <p class="cp_pls cl">
+                                        <a href="#">登录位置：广西玉林</a>
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="plc">
+                                <div class="pi">
+                                    <div class="pti">
+                                        <div class="authi">
+                                            <img class="authicn vm" id="authicon1"
+                                                 src="[{$Think.const.IMG_URL}]online_admin.gif">
+                                            <em id="authorposton1">发表于 <span>[{$add_time.add_time}]</span></em>
+                                            <span class="pipe">|</span>
+                                            <a href="#" rel="nofollow">只看该作者</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pct">
+                                    <style type="text/css">.pcb {
+                                        margin-right: 0
+                                    }</style>
+                                    <div class="pcb">
+                                        <div class="t_fsz">
+                                            <table cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="t_f" id="postmessage_1">[{$p.fp_content}]</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="_postposition1"></tr>
+                        <tr>
+                            <td class="pls"></td>
+                            <td class="plc" style="overflow:visible;">
+                                <div class="po hin">
+                                    <div class="pob cl">
+                                        <em>
+                                            <a class="fastre" style="cursor:pointer;">回复([{$b}])</a>
+                                            <!--<a class="editp" style="cursor:pointer;">编辑</a>-->
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1楼
+                                        </em>
+                                    </div>
+                                    <div class="myif" style="display:none;">
+                                        <iframe src="./pinglun.html?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]&fp_id=[{$_GET['fp_id']}]"
+                                                frameborder="0"
+                                                style="height:400px;width:750px;background:#F7F5F5;"></iframe>
+                                    </div>
+                            </td>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.fastre').click(function () {
+                                        if ($('.myif').css('display') == 'none') {
+                                            $('.myif').show();
+                                        } else {
+                                            $('.myif').hide();
+                                        }
+                                    });
+
+                                });
+                            </script>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--回帖部分-->
+                    [{foreach fplist as $k=>$v }]
+                    <table id="pid1" class="plhin" summary="pid1" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td class="pls" rowspan="2">
+                                <div id="favatar1" class="pls favatar">
+                                    <a name="lastpost"></a>
+                                    <div class="pi">
+                                    </div>
+                                    <div>
+                                        <div class="avatar1">
+                                            <a href="#" class="avtm" target="_blank">
+                                                [{foreach userlist as $k1=>$v1 }]
+                                                [{if $v1.user_id == $v.user_id }]
+                                                <img src="[{$Think.const.IMG_URL}][{$v1.user_img}]">
+                                                [{/if}]
+                                                [{/foreach}]
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <p class="cp_pls cl">
+                                        [{foreach userlist as $k1=>$v1 }]
+                                        [{if $v1.user_id == $v.user_id }]
+                                        <a href="#">回帖人：[{$v1.username}]</a>
+                                        [{/if}]
+                                        [{/foreach}]
+                                    </p>
+                                    [{if $banzhu.am_name==$un.username }]
+                                    <p class="cp_pls cl">
+                                        <span style="color:red;margin-left:35px;">超级版主</span>
+                                    </p>
+                                    [{/if}]
+                                    <p class="cp_pls cl">
+                                        <a href="#">登录位置：广西玉林</a>
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="plc">
+                                <div class="pi">
+
+                                </div>
+                                <div class="pct">
+                                    <style type="text/css">.pcb {
+                                        margin-right: 0
+                                    }</style>
+                                    <div class="pcb">
+                                        <div class="t_fsz">
+                                            <table cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="t_f" id="postmessage_1">[{$v.fr_content}]</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="_postposition1"></tr>
+                        <tr>
+                            <td class="pls"></td>
+                            <td class="plc" style="overflow:visible;">
+                                <div class="po hin">
+                                    <div class="pob cl">
+                                        <em>
+                                            <a class="fastre[{$k}]" style="cursor:pointer;background: url(http://localhost/ershou/tp5/public/static/home/img/fastreply.gif) no-repeat 0 50%">回复
+                                                [{foreach c as $k1=>$v1 }]
+                                                [{if $k1 == $v.fr_id }]([{$v1}])[{/if}]
+                                                [{/foreach}]
+                                            </a>
+                                            <!--如果是发帖本人就显示删除-->
+                                            [{if $add_time.user_id == $Think.cookie.user_id }]
+                                            <a class="del[{$k}]" value="[{$v.fr_id}]" style="cursor:pointer;background: url(http://localhost/ershou/tp5/public/static/home/img/fastreply.gif) no-repeat 0 50%">删除</a>
+                                            [{/if}]
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[{$k+2}]楼
+                                        </em>
+                                    </div>
+                                    <div class="myif[{$k}]" style="display:none;">
+                                        <iframe src="./reply_pinglun.html?fac_id=[{$_GET['fac_id']}]&fsc_id=[{$_GET['fsc_id']}]&fp_id=[{$_GET['fp_id']}]&fr_id=[{$v.fr_id}]" frameborder="0" style="height:400px;width:750px;background:#F7F5F5;"></iframe>
+                                    </div>
+                            </td>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.fastre[{$k}]').click(function () {
+                                        if ($('.myif[{$k}]').css('display') == 'none') {
+                                            $('.myif[{$k}]').show();
+                                        } else {
+                                            $('.myif[{$k}]').hide();
+                                        }
+                                    });
+                                    //点击删除
+                                    $('.del[{$k}]').click(function (e) {
+                                        if (confirm("确定要删除吗？")) {
+                                            var fr_id = $(e.target).attr('value');
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "[{$Think.const.APP_HOME_URL}]Forum/forum_del_louceng",
+                                                data: "fr_id=" + fr_id,
+                                                async: true, //默认为true 异步
+                                                error: function () {
+                                                    alert('error');
+                                                },
+                                                success: function (msg) {
+                                                    if (msg == 'success') {
+                                                        alert('删除楼层成功');
+                                                        window.location.reload();
+                                                    } else {
+                                                        alert('未知错误');
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+                            </script>
+                        </tr>
+                        </tbody>
+                    </table>
+                    [{/foreach}]
+                </div>
+            </div>
+            <div style="font-size:16px;margin:0 0 0 23%;">[{$page}]</div>
+            <div id="f_pst" class="bm">
+                <div class="bm_h">
+                    <h2>快速回复</h2>
+                </div>
+                <div class="bm_c">
+                    <form method="post" autocomplete="off" id="fastpostform" action="[{$Think.const.APP_HOME_URL}]forum/forum_reply">
+                        <!--隐藏发送id-->
+                        <input type="hidden" name="fac_id" value="[{$_GET['fac_id']}]">
+                        <input type="hidden" name="fsc_id" value="[{$_GET['fsc_id']}]">
+                        <input type="hidden" name="fp_id" value="[{$_GET['fp_id']}]">
+                        <!--style给定宽度可以影响编辑器的最终宽度-->
+                        <script type="text/plain" id="myEditor" style="width:936px;height:260px;"></script>
+                        <script type="text/javascript">
+                            //实例化编辑器
+                            var um = UM.getEditor('myEditor');
+                            //判断内容是否为空
+                            function hasContent() {
+                                return um.hasContents();
+                            }
+                        </script>
+                        <p class="ptm pnpost">
+                            <button name="fastpostsubmit" value="true" type="submit" id="fastpostsubmit" tabindex="13"
+                                    class="pn pnc"><strong>发表回复</strong>
+                            </button>
+                        </p>
+                    </form>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            /*一个简单的jq，内容不能为空*/
+                            $("#fastpostsubmit").click(function () {
+                                if (!hasContent()) {
+                                    alert('内容不能为空');
+                                    return false;
+                                }
+                                /*判断用户是否登录，如果没登陆不能发帖*/
+                                if ($.cookie('username') == null) {
+                                    alert('请登录再来评论');
+                                    return false;
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

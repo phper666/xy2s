@@ -1,0 +1,24 @@
+[{include file="Link/header"/}]  <!--包含公共头部文件-->
+<table class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>链接ID</th>
+        <th>链接名</th>
+        <th>链接</th>
+        <th>链接添加时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach linklist as $k=>$v }]
+    <tr>
+        <td>[{$v.link_id}]</td>
+        <td>[{$v.link_name}]</td>
+        <td>[{$v.link_link}]</td>
+        <td>[{$v.add_time}]</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]Link/addlink">添加链接</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>校园淘物站登录</title>
+    <link rel="stylesheet" href="[{$Think.const.CSS_URL}]login.css" media="all">
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            $('.theme-popover-mask').fadeIn(100);
+            $('.theme-popover').slideDown(200);
+            $('.theme-poptit .close').click(function () {
+                $('.theme-popover-mask').fadeOut(100);
+                $('.theme-popover').slideUp(200);
+                window.location.href = "[{$Think.const.APP_HOME_URL}]Index/index";
+            })
+
+        })
+    </script>
+</head>
+<!--一个简单的JQ，用户名和密码不能为空-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tj").click(function () {
+            if ($("#password").val() == '' || $("#username").val() == '') {
+                alert('用户或密码不能为空');
+                alert([{$Think.Session.username
+            }])
+                ;
+                return false;
+            }
+        });
+    });
+</script>
+<body>
+<div class="theme-popover">
+    <div class="theme-poptit">
+        <a href="javascript:;" title="关闭" class="close">×</a>
+        <h3>登录</h3>
+    </div>
+    <div class="theme-popbod dform">
+        <form class="theme-signin" name="loginform" action="[{$Think.const.APP_HOME_URL}]User/login" method="post">
+            <ol>
+                <li><h4>你必须先登录！</h4></li>
+                <!--html5新特新-->
+                <li><strong>用户名：</strong><input id="username" class="ipt" type="text" name="username" value=""
+                                                placeholder="邮箱/用户名" size="20"/></li>
+                <li><strong>密码：</strong><input id="password" class="ipt" type="password" name="password" value=""
+                                               size="20"/></li>
+                <li>
+                    <input id="tj" class="btn btn-primary" type="submit" value=" 登 录 "/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input id="bcdl" type="checkbox" checked="true"/>保持登录
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="[{$Think.const.APP_HOME_URL}]User/resetpw">忘记密码?</a>
+                </li>
+            </ol>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="theme-popover-mask"></div>
+</body>
+</html>

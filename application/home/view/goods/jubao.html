@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>商品举报</title>
+    <link rel="stylesheet" href="[{$Think.const.CSS_URL}]login.css" media="all">
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            $('.theme-popover-mask').fadeIn(100);
+            $('.theme-popover').slideDown(200);
+            $('.theme-poptit .close').click(function () {
+                $('.theme-popover-mask').fadeOut(100);
+                $('.theme-popover').slideUp(200);
+                $goods_id = window.location.search.substr(1);
+                //点关闭就自动返回商品显示
+                window.location.href = "[{$Think.const.APP_HOME_URL}]Goods/shangpin_login?"+$goods_id;
+            })
+
+        })
+    </script>
+</head>
+<!--一个简单的JQ，用户名和密码不能为空-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        // 访问该页面时，把goods_id赋值
+        $("#goods_id").attr('value',getUrlParam('goods_id'));
+    });
+
+    //一个能把地址url匹配成值的函数，例如?goods_id=5,输入goods_id，就会匹配出5
+    function getUrlParam(name){
+        //构造一个含有目标参数的正则表达式对象
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        //匹配目标参数
+        var r = window.location.search.substr(1).match(reg);
+        //返回参数值
+        if (r!=null) return unescape(r[2]);
+        return null;
+    }
+</script>
+
+<body>
+<div class="theme-popover">
+    <div class="theme-poptit">
+        <a href="javascript:;" title="关闭" class="close">×</a>
+        <h3>举报</h3>
+    </div>
+    <div class="theme-popbod dform">
+        <form class="theme-signin" name="jubaoform" action="[{$Think.const.APP_HOME_URL}]Goods/jubao" method="post">
+            <ol>
+                <li><strong style="margin-top:-25px;">举报内容：</strong><textarea style="border:1px solid #646464;" name="gr_content" cols="40" rows="10"></textarea></li>
+                <li>
+                    <input style="margin-left:100px;" id="tj" class="btn btn-primary" type="submit" value=" 举 报 "/>
+                </li>
+            </ol>
+            <!--隐藏要发送的举报用户id和被举报商品id-->
+            <input type="hidden" name="user_id" value="[{$Think.Cookie.user_id}]">
+            <input id="goods_id" type="hidden" name="goods_id">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="theme-popover-mask"></div>
+</body>
+</html>

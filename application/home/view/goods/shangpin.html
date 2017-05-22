@@ -1,0 +1,172 @@
+<div class="container">
+    <div class="main center clearfix">
+        <div class="ershou-details">
+            <div class="ershou-photos-wr">
+                <div class="bigger-photo-box">
+                    <a class="bigger-photo hide" rel="img_group" href=""><img
+                            class="bigger" src="[{$Think.const.STATIC_URL}][{$g.goods_img1}]" alt=""></a>
+                    <a class="bigger-photo hide show" rel="img_group" href=""><img
+                            class="bigger" src="[{$Think.const.STATIC_URL}][{$g.goods_img2}]" alt=""></a>
+                </div>
+                <div class="ershou-photo-slide">
+                    <div class="ershou-small-photos">
+                        <img class="small" src="[{$Think.const.STATIC_URL}][{$g.goods_thumb1}]">
+                    </div>
+                    <div class="ershou-small-photos">
+                        <img class="small cur1" src="[{$Think.const.STATIC_URL}][{$g.goods_thumb2}]">
+                    </div>
+                </div>
+                <script>
+                    /*图片切换显示*/
+                    $(document).ready(function () {
+                        //点击小图切换大图
+                        $(".ershou-small-photos img").mouseover(function () {
+                            /*点击缩略图框框就到哪里*/
+                            $(".small.cur1").attr('class', 'small');
+                            $(this).attr('class', 'small cur1');
+                            /*点击缩略图就会显示对应的大图*/
+                            /* $("span.label i:nth-child(1)")*/
+                            var index = $(".ershou-small-photos img").index(this);  //点击的下标
+                            index += 1;   //坐标为0开始，所以要加1
+                            $(".bigger-photo.hide.show").attr('class', 'bigger-photo hide'); //如果不选就隐藏
+                            $(".bigger-photo-box a:nth-child(" + index + ")").attr('class', 'bigger-photo hide show');
+                        });
+                    });
+                </script>
+                <div class="ershou-photo-slide-layer"></div>
+            </div>
+            <div class="ershou-info">
+                <div class="ershou-hd">
+                    <h2 class="ershou-title"></h2>
+                    <div class="ershou-price discount">
+                        <span>[{$g.ershou_price}]</span>
+                        [{if $g.goods_jiangjia == 'yes' }]
+                        <span class="is-discount">可小刀</span>
+                        [{else}]
+                        <span class="is-discount">不可小刀</span>
+                        [{/if}]
+                    </div>
+                    <p class="bro-counts">浏览了<span>[{$g.click_count}]</span>次</p>
+                </div>
+                <ul class="ershou-detail">
+                    <li class="ershou-place">
+                        <div class="name"><span>交易地点</span></div>
+                        <div class="value"><span>[{$g.goods_place}]</span></div>
+                    </li>
+                    <li class="ershou-seller">
+                        <div class="name"><span>卖家</span></div>
+                        <a href="" target="_blank">
+                            <div class="value">
+                                <span class="value-name">[{$u.account_name}]</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>商品数目</span></div>
+                        <div class="value"><span>剩余[{$g.goods_number}]个</span></div>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>交易状态</span></div>
+                        <div class="value"><span>[{if $g.is_delete == 0 }]未卖出[{else}]已卖出[{/if}]</span></div>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>认证状态</span></div>
+                        <div class="value"><span>未认证</span></div>
+                    </li>
+                    <li class="ershou-tel">
+                        <div class="name"><span>手机</span></div>
+                        <div class="value">
+                            <span class="user-num">********</span>
+                            <span class="user-login-tip" style="display: inline-block;">登录后查看号码</span>
+                        </div>
+                    </li>
+                    <li class="ershou-phone">
+                        <div class="name"><span>QQ</span></div>
+                        <div class="value">
+                            <span class="user-num">********</span>
+                            <span class="user-login-tip" style="display: inline-block;">登录后查看QQ</span>
+                        </div>
+                    </li>
+                    <!--一个简单的jq用于判断用户是否登录，如果没登录就无发查看号码-->
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $(function () {
+                                $(".ershou-phone span").click(function () {
+                                    if ($.cookie('username') == null) {
+                                        alert("请您先登录！");
+                                    }
+                                });
+
+                                $(".ershou-tel span").click(function () {
+                                    if ($.cookie('username') == null) {
+                                        alert("请您先登录！");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <li class="ershou-time">
+                        <div class="name"><span>发布时间</span></div>
+                        <div class="value">
+                            <span class="real-time">[{$t}]天前</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="complain"><a href="javascript:;"">•&nbsp;&nbsp;&nbsp;&nbsp;举报&nbsp;&nbsp;&nbsp;&nbsp;•</a>
+                </div>
+                <!--一个简单的jq用于判断用户是否登录，如果没登录就无法举报-->
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(function () {
+                            $(".complain a").click(function () {
+                                if ($.cookie('username') == null) {
+                                    alert("请您先登录！");
+                                } else {
+                                    location.href = "jubao.html?goods_id=1";
+                                }
+                            });
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="ershou-desc">
+            <div class="desc clearfix">商品描述：
+                <span id="user_cmt">[{$g.goods_desc}]</span>
+            </div>
+        </div>
+
+        <div class="comments">
+            <div class="comments-title">评论</div>
+            <div class="comments-wr">
+                <div class="comment-wr">
+                    <div class="comment">
+                        <p class="comment">登录才能查看评论</p>
+                    </div>
+                    <div class="post-comment clearfix">
+                        <div class="comment-cover">
+                            <span class="loader loader-quart"></span>
+                        </div>
+                        <div class="commenting-unlogin clearfix">
+                            <div class="comment-input-wr-wr">
+                                <div class="comment-input-wr">
+                                    <span class="tips" style="cursor:pointer;">评论商品</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--一个简单的jq，点击就会触发登录-->
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                           $(".commenting-unlogin").click(function(){
+                              alert('请登录，再来评论');
+                           });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

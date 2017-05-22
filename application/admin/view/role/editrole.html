@@ -1,0 +1,88 @@
+[{include file="Role/header"/}]  <!--包含公共头部文件-->
+<!--一个jq，用来选择用户后，就显示用户信息-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#select").change(function () {
+            var role_id = $("#select").attr("value");
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]Role/role_msg",
+                data: "role_id=" + role_id,
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    var a = $.parseJSON(msg);
+                    var b = a.role_auth_ids;
+                    var c = JSON.stringify(b);
+                    var ids = c.substr(1, c.length - 2);
+                    var arr = ids.split(",");
+                    $("input[type=checkbox]").attr("checked", false);
+                    $("#new_role_name").attr("value", a.role_name);
+                    //把ids循环出来,并且按id来选择
+                    $.each(arr, function (k, v) {
+                        $("#role_auth_ids" + v).attr("checked", true);
+                    });
+                }
+            });
+        });
+    });
+</script>
+<form action="[{$Think.const.APP_ADMIN_URL}]Role/editrole" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">角色名</td>
+            <td>
+                <select name="role_id" id="select">
+                    <!--循环出角色名-->
+                    [{foreach rolelist as $k=>$v }]
+                    <option value="[{$v.role_id}]">[{$v.role_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">新的角色名</td>
+            <td><input id="new_role_name" type="text" name="role_name" value=""/></td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">最高权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 0 }]
+                <input id="role_auth_ids[{$v.auth_id}]" name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+        <tr width="25%">
+            <td width="10%" class="tableleft">一级权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 1 }]
+                <input id="role_auth_ids[{$v.auth_id}]" name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+        <tr width="25%">
+            <td width="10%" class="tableleft">二级权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 2 }]
+                <input id="role_auth_ids[{$v.auth_id}]" name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">更新</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Role/rolelist" class="btn btn-success" name="backid" id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

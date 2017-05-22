@@ -1,0 +1,231 @@
+<div class="container">
+    <div class="main center clearfix">
+        <div class="ershou-details">
+            <div class="ershou-photos-wr">
+                <div class="bigger-photo-box">
+                    <a class="bigger-photo hide" rel="img_group" href=""><img
+                            class="bigger" src="[{$Think.const.STATIC_URL}][{$g.goods_img1}]" alt=""></a>
+                    <a class="bigger-photo hide show" rel="img_group" href=""><img
+                            class="bigger" src="[{$Think.const.STATIC_URL}][{$g.goods_img2}]" alt=""></a>
+                </div>
+                <div class="ershou-photo-slide">
+                    <div class="ershou-small-photos">
+                        <img class="small" src="[{$Think.const.STATIC_URL}][{$g.goods_thumb1}]">
+                    </div>
+                    <div class="ershou-small-photos">
+                        <img class="small cur1" src="[{$Think.const.STATIC_URL}][{$g.goods_thumb2}]">
+                    </div>
+                </div>
+                <script>
+                    /*图片切换显示*/
+                    $(document).ready(function () {
+                        //点击小图切换大图
+                        $(".ershou-small-photos img").mouseover(function () {
+                            /*点击缩略图框框就到哪里*/
+                            $(".small.cur1").attr('class', 'small');
+                            $(this).attr('class', 'small cur1');
+                            /*点击缩略图就会显示对应的大图*/
+                            /* $("span.label i:nth-child(1)")*/
+                            var index = $(".ershou-small-photos img").index(this);  //点击的下标
+                            index += 1;   //坐标为0开始，所以要加1
+                            $(".bigger-photo.hide.show").attr('class', 'bigger-photo hide'); //如果不选就隐藏
+                            $(".bigger-photo-box a:nth-child(" + index + ")").attr('class', 'bigger-photo hide show');
+                        });
+                    });
+                </script>
+                <div class="ershou-photo-slide-layer"></div>
+            </div>
+            <div class="ershou-info">
+                <div class="ershou-hd">
+                    <h2 class="ershou-title"></h2>
+                    <div class="ershou-price discount">
+                        <span>[{$g.ershou_price}]</span>
+                        [{if $g.goods_jiangjia == 'yes' }]
+                        <span class="is-discount">可小刀</span>
+                        [{else}]
+                        <span class="is-discount">不可小刀</span>
+                        [{/if}]
+                    </div>
+                    <p class="bro-counts">浏览了<span>[{$g.click_count}]</span>次</p>
+                </div>
+                <ul class="ershou-detail">
+                    <li class="ershou-place">
+                        <div class="name"><span>交易地点</span></div>
+                        <div class="value"><span>[{$g.goods_place}]</span></div>
+                    </li>
+                    <li class="ershou-seller">
+                        <div class="name"><span>卖家</span></div>
+                        <a href="" target="_blank">
+                            <div class="value">
+                                <span class="value-name">[{$u.account_name}]</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>商品数目</span></div>
+                        <div class="value"><span>剩余[{$g.goods_number}]个</span></div>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>交易状态</span></div>
+                        <div class="value"><span>[{if $g.is_delete == 0 }]未卖出[{else}]已卖出[{/if}]</span></div>
+                    </li>
+                    <li class="ershou-cert">
+                        <div class="name"><span>认证状态</span></div>
+                        <div class="value"><span>未认证</span></div>
+                    </li>
+                    <li class="ershou-tel">
+                        <div class="name"><span>手机</span></div>
+                        <div class="value">
+                            <span class="user-num">[{$g.user_tel}]</span>
+                        </div>
+                    </li>
+                    <li class="ershou-phone">
+                        <div class="name"><span>QQ</span></div>
+                        <div class="value">
+                            <span class="user-num">[{$g.user_qq}]</span>
+                        </div>
+                    </li>
+                    <li class="ershou-time">
+                        <div class="name"><span>发布时间</span></div>
+                        <div class="value">
+                            <span class="real-time">[{$t}]天前</span>
+                        </div>
+                    </li>
+                </ul>
+                <div id="jubao" class="complain" data-type="r"><a href="javascript:;"">•&nbsp;&nbsp;&nbsp;&nbsp;举报&nbsp;&nbsp;&nbsp;&nbsp;•</a>
+                    <script type="text/javascript">
+                        /*一个简单的JQ，举报链接*/
+                        $(document).ready(function(){
+                            $("#jubao a").click(function () {
+                                window.location.href = "[{$Think.const.APP_HOME_URL}]Goods/jubao?goods_id=[{$g.goods_id}]";
+                            });
+                        });
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="ershou-desc"  id="y">
+            <div class="desc clearfix">商品描述：
+                <span id="user_cmt">[{$g.goods_desc}]</span>
+            </div>
+        </div>
+
+        <div class="comments">
+            <div class="comments-title">评论</div>
+            <div class="comments-wr">
+                <div class="comment-wr">
+                    [{foreach comments as $k=>$v }]
+                    <div class="comment">
+                        <!--判断是否为顶级留言-->
+                        [{if $v.cm_parent == 0 }]
+                        <img class="avatar" src="[{$Think.const.IMG_URL}][{$u.user_img}]" alt="头像">
+                        <div style="margin:0 0 -20px 0;" id="commentator" class="commentator">[{$v.username}]评论：[{$v.cm_content}]</div><p class="comment">&nbsp;&nbsp;&nbsp;&nbsp;</p>[{$v.cm_time}]
+                        <img value="fuhao[{$k}]" style="position:relative;top:17px;left:-85px;cursor:pointer;"src="[{$Think.const.IMG_URL}]fuhao_b.png" alt="">[{foreach dj_count as $k1=>$v1 }][{if $v.cm_id == $k1 }]([{$v1}])[{/if}][{/foreach}]
+                        [{/if}]
+                        [{foreach comments_erji as $k1=>$v1 }]
+                        [{if $v.cm_id == $v1.cm_parent }]
+                        <div class="fuhao[{$k}]" style="margin:0px 0 10px 100px; font-size:12px;display:none;">[{$v1.username}]回复[{$v.username}]:<span class="comment">[{$v1.cm_content}]</span>
+                            <span style="margin:0 0 0 40px;">[{$v1.cm_time}]&nbsp;&nbsp;&nbsp;&nbsp;<a class="rpl" bb="[{$v1.username}]" value="[{$v.cm_id}]" href="javascript:">回复</a><span/>
+                        </div>
+                        [{/if}]
+                        [{/foreach}]
+                        [{if $v.cm_parent == 0 }]
+                        <div class="man">
+                            <a bb="[{$v.username}]" value="[{$v.cm_id}]" class="rpl" href="javascript:">回复</a>
+                        </div>
+                        [{/if}]
+                    </div>
+                    [{/foreach}]
+                    <!--一个简单的jq，点击按钮就弹出二级评论和收起-->
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("img").click(function(e){
+                                var fuhao = $(e.target).attr('value');
+                                if($("."+fuhao).css('display') == 'none'){
+                                    $("."+fuhao).attr("src","[{$Think.const.IMG_URL}]fuhao_t.png");
+                                    $("."+fuhao).css('display','block');
+                                }else{
+                                    $("."+fuhao).attr("src","[{$Think.const.IMG_URL}]fuhao_b.png");
+                                    $("."+fuhao).css('display','none');
+                                }
+                            });
+                        });
+                    </script>
+
+                    <!--隐藏发送用户名-->
+                    <input id="username" type="hidden" name="username" value="[{$Think.Cookie.username}]">
+                    <input id="user_id" type="hidden" name="user_id" value="[{$Think.Cookie.user_id}]">
+                    <!--隐藏发送商品id-->
+                    <input id="goods_id" name="goods_id" value="[{$g.goods_id}]" type="hidden">
+
+                    <div id="huifu" style="margin:0 0 10px 40px;display:none;">回复<span style="font-size:15px;">admin:</span></div>
+
+                    <textarea id="text" style="border:1px solid #646464;font-size:15px;margin-left:60px;" name="comment" cols="53" rows="2"></textarea>
+                    <div id="pinglun" style="margin:10px 0 0 388px;border:1px solid #646464;width:60px;cursor:pointer;"><span style="font-size:15px;margin-left:16px;">评论</span></div>
+                    <!--隐藏发送用户名-->
+                    <input id="username" type="hidden" name="username" value="[{$Think.Cookie.username}]">
+                    <input id="user_id" type="hidden" name="user_id" value="[{$Think.Cookie.user_id}]">
+                    <!--隐藏发送商品id-->
+                    <input id="goods_id" name="goods_id" value="[{$g.goods_id}]" type="hidden">
+                    <div style="margin:14px 0 0 50px;">[{$page}]</div>
+                    <script type="text/javascript">
+                        cm_id = 0;
+                        $(document).ready(function(){
+                            var url = window.location.href;
+                            //点击下一页评论，就跳转到评论区域
+                            if(url.indexOf("page")>0){
+                                window.location.href = url+'#y';
+                            }
+                            //点击回复就显示出回复对应的用户
+                            $(".rpl").click(function(e){
+                                cm_id = $(e.target).attr('value');     //全局变量
+                                var username = $(e.target).attr('bb');     //获取要评论的用户名
+                                $('#huifu span').html(username+':');
+                                if($('#huifu').css('display') == 'none'){
+                                    $('#huifu').css('display','block');
+                                }else if($('#huifu').css('display','block')){
+                                    $('#huifu').css('display','none');
+                                    cm_id = 0;
+                                }
+                            });
+
+                            //如果点击
+
+                            //点击评论就提交评论
+                           $("#pinglun").click(function(){
+                               //判断是否选择了回复别人
+                               var comment = $("#text").val();
+                               var username = $("#username").val();
+                               var goods_id = $("#goods_id").val();
+                               var user_id = $("#user_id").val();
+                               if(comment != ''){
+                                   //用ajax无刷新提交评论
+                                   $.ajax({
+                                       type: "POST",
+                                       url: "[{$Think.const.APP_HOME_URL}]Comment/addcomment",
+                                       data: "username=" + username +"&comment="+comment+"&goods_id="+goods_id+"&user_id="+user_id+"&cm_id="+cm_id,
+                                       async: true, //默认为true 异步
+                                       error: function () {
+                                           alert('出错');
+                                       },
+                                       success: function (msg) {
+                                           if(msg == 'success'){
+                                                window.location.reload();
+                                           }
+                                       }
+                                   });
+                               }else{
+                                   alert('评论不能为空');
+                                   return false;
+                               }
+                           });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

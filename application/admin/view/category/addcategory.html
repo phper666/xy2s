@@ -1,0 +1,57 @@
+[{include file="Category/header" /}]  <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Category/addcategory" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr width="15%">
+            <td width="10%" class="tableleft">权限等级</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="cat_level" id="jibie">
+                    <option value="0">0级</option>
+                    <option value="1">一级</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft">栏目</td>
+            <td>
+                <select name="parent_id" id="select">
+                    <option value="0">默认</option>
+                    [{foreach categorylist as $k=>$v }]
+                    [{if $v.cat_level == 0 }]
+                    <option value="[{$v.cat_id}]">[{$v.cat_name}]</option>
+                    [{/if}]
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">栏目名</td>
+            <td><input type="text" name="cat_name" value=""/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">栏目描述</td>
+            <td><input type="text" name="cat_desc" value=""/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Category/categorylist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+    <!--一个简单的jq，选择级别就会显示出对应的级别的上一级栏目-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#select").attr('readonly', true);
+            $("#jibie").change(function () {
+                if (($("#jibie>option:selected").attr('value') == "0")) {
+                    $("#select").attr('readonly', true);       //不能接收，不能编辑
+                } else if (($("#jibie option:selected").attr('value') == "1")) {   //选择一级，显示上级栏目
+                    $("#select").attr('readonly', false);       //不能接收，不能编辑
+                }
+            });
+        });
+    </script>
+</form>

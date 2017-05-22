@@ -1,0 +1,77 @@
+[{include file="Admin/header" /}]  <!--包含头部文件-->
+<form class="form-inline definewidth m20" action="" method="get">
+    管理员名称：
+    <input type="text" name="am_name" id="username" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    &nbsp;&nbsp;
+</form>
+<table class="table table-bordered table-hover definewidth m10" id="table1">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>用户名称</th>
+        <th>角色名称</th>
+        <th>真实姓名</th>
+        <th>邮箱</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach adminlist as $k=>$v }]
+    <tr>
+        <td>[{$k+1}]</td>
+        <td>[{$v.am_name}]</td>
+        <!--显示出角色的名称-->
+        [{if $v.role_id == 0 }]
+        <td>超级管理员</td>
+        [{/if}]
+        [{foreach rolelist as $k1=>$v1 }]
+        [{if $v1.role_id == $v.role_id }]
+        <td>[{$v1.role_name}]</td>
+        [{/if}]
+        [{/foreach}]
+        <!--结束角色名称循环对比-->
+        <td>[{$v.real_name}]</td>
+        <td>[{$v.am_email}]</td>
+        <td>[{$v.am_regtime}]</td>
+        <td>
+            <!--为了获取要删除的数据id-->
+            <a value="[{$v.am_id}]" href="#">删除</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>
+</body>
+</html>
+<script>
+    /*简单的jq，获取标签a点击的值*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Admin/deladmin",
+                    data: "am_id=" + id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('管理员删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('管理员删除失败');
+                            window.location.reload();
+                        } else if (msg == '无权删除') {
+                            alert('你无权删除');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

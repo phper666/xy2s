@@ -1,0 +1,28 @@
+[{include file="Auth/header" /}]  <!--包含头部文件-->
+<table class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>权限ID</th>
+        <th>权限名称</th>
+        <th>控制器</th>
+        <th>方法</th>
+        <th>权限全路径</th>
+        <th>权限等级</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach authlist as $k=>$v }]
+    <tr>
+        <td>[{$v.auth_id}]</td>
+        <td>[{$v.auth_name}]</td>
+        <td>[{$v.auth_c}]</td>
+        <td>[{$v.auth_a}]</td>
+        <td>[{$v.auth_path}]</td>
+        <td>[{$v.auth_level}]级</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]Auth/editauth">编辑</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

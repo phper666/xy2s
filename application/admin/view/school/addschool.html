@@ -1,0 +1,66 @@
+[{include file="School/header"/}]  <!--包含公共头部文件-->
+<!--一个jq，用来选择省份后，就显示省份下的城市-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#select1").change(function () {
+            var region_id = $("#select1 option:selected").attr("region_id");
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]School/city_msg",
+                data: "region_id=" + region_id,
+                dataType: "json",
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    $("#select2 option").remove()
+                    $.each(msg, function (k, v) {
+                        $("#select2").append("<option value='" + v.REGION_NAME + "'>" + v.REGION_NAME + "</option>");
+                    });
+                }
+            });
+        });
+    });
+</script>
+<form action="[{$Think.const.APP_ADMIN_URL}]School/addschool" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="10%" class="tableleft">省份</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="school_area" id="select1" value="">
+                    [{foreach regionlist as $k=>$v }]
+                    [{if $v.PARENT_ID == 1 }]
+                    <option region_id="[{$v.REGION_ID}]" value="[{$v.REGION_NAME}]">[{$v.REGION_NAME}]</option>
+                    [{/if}]
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">城市</td>
+            <td style="border:1px solid #DDDDDD;">
+                <select name="school_city" value="" id="select2">
+                    <option value=""></option>
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">学校名</td>
+            <td><input type="text" name="school_name" value=""/></td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">搜索关键字</td>
+            <td><input type="text" name="keywords" value=""/></td>
+        </tr>
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]School/schoollist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

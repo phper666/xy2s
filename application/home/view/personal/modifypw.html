@@ -1,0 +1,75 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                [{foreach userlist as $k=>$v }]
+                <div id="college">[{$v.school_name}]</div>
+                [{/foreach}]
+            </div>
+        </li>
+        <div id="xgpersonal" class="button" data-type="l" style="width:110px;">完善信息</div>
+        <div id="goodsfb" class="button" data-type="l" style="width:110px;">发布的商品</div>
+        <div id="xggoods" class="button" data-type="l" style="width:110px;">商品信息修改</div>
+        <div id="goodsdel" class="button" data-type="l" style="width:110px;">商品删除</div>
+        <div id="post" class="button" data-type="l" style="width:110px;">帖子管理</div>
+        <div id="msgtongzhi" class="button" data-type="l" style="width:110px;">消息通知<span style="color:red;">([{$tz}])</span></div>
+        <div id="modifypw" class="button" data-type="l" style="width:110px;">修改密码</div>
+        <div id="renzheng" class="button" data-type="l" style="width:110px;">认证</div>
+    </ul>
+</nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#xgpersonal").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xgpersonal";
+        });
+        $("#modifypw").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/modifypw";
+        });
+        $("#goodsfb").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsfb";
+        });
+        $("#xggoods").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xggoods";
+        });
+        $("#post").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/post";
+        });
+        $("#goodsdel").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsdel";
+        });
+        $("#msgtongzhi").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/msgtongzhi";
+        });
+        $("#renzheng").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/renzheng";
+        });
+    });
+</script>
+<div id="xgpw">
+    <form id="myform" action="[{$Think.const.APP_HOME_URL}]Personal/modifypw" method="post">
+        <div class="xinpw">原来密码:<input id="password" type="password" name="password"/></div>
+        <div class="xinpw">新的密码:<input id="xpassword" type="password" name="xpassword"/></div>
+        <div class="xinpw">确认密码:<input id="fpassword" type="password" name="fpassword"/><br/></div>
+        <div class="tijiao" ><input type="submit" value="提交"/></div>
+    </form>
+</div>
+<!--一个简单的jq，用来检测密码是否一致,并且密码都不能为空-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myform').submit(function () {
+            var pw = $('#password').val();
+            var xpw = $('#xpassword').val();
+            var fpw = $('#fpassword').val();
+            if (pw == '' || xpw == '') {
+                alert('密码不能为空');
+                return false;
+            }
+            if (xpw != fpw) {
+                alert('密码不一致');
+                return false;
+            }
+        });
+    });
+</script>

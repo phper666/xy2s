@@ -1,0 +1,24 @@
+[{include file="School/header"/}]  <!--包含公共头部文件-->
+<table class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>学校ID</th>
+        <th>学校地区ID</th>
+        <th>学校名</th>
+        <th>搜索关键字</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach schoollist as $k=>$v }]
+    <tr>
+        <td>[{$v.school_id}]</td>
+        <td>[{$v.school_area}]</td>
+        <td>[{$v.school_name}]</td>
+        <td>[{$v.keywords}]</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]School/addschool">添加学校</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

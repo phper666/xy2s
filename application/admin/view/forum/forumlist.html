@@ -1,0 +1,31 @@
+[{include file="Forum/header" /}]  <!--包含头部文件-->
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>总栏目ID</th>
+        <th>版主</th>
+        <th>总栏目名称</th>
+        <th>子栏目名称</th>
+    </tr>
+    </thead>
+    [{foreach faclist as $k=>$v }]
+    <tr>
+        <td>[{$v.fac_id}]</td>
+        <td>
+            [{foreach amlist as $k2=>$v2 }]
+            [{if $v2.am_id == $v.am_id }]
+            [{$v2.am_name}]
+            [{/if}]
+            [{/foreach}]
+        </td>
+        <td>[{$v.fac_name}]</td>
+        <td>
+            [{foreach fsclist as $k1=>$v1 }]
+            [{if $v1.fac_id == $v.fac_id }]
+            [{$v1.fsc_name}]|
+            [{/if}]
+            [{/foreach}]
+        </td>
+    </tr>
+    [{/foreach}]
+</table>

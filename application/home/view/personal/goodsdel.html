@@ -1,0 +1,103 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                [{foreach userlist as $k=>$v }]
+                <div id="college">[{$v.school_name}]</div>
+                [{/foreach}]
+            </div>
+        </li>
+        <div id="xgpersonal" class="button" data-type="l" style="width:110px;">完善信息</div>
+        <div id="goodsfb" class="button" data-type="l" style="width:110px;">发布的商品</div>
+        <div id="xggoods" class="button" data-type="l" style="width:110px;">商品信息修改</div>
+        <div id="goodsdel" class="button" data-type="l" style="width:110px;">商品删除</div>
+        <div id="post" class="button" data-type="l" style="width:110px;">帖子管理</div>
+        <div id="msgtongzhi" class="button" data-type="l" style="width:110px;">消息通知<span style="color:red;">([{$tz}])</span></div>
+        <div id="modifypw" class="button" data-type="l" style="width:110px;">修改密码</div>
+        <div id="renzheng" class="button" data-type="l" style="width:110px;">认证</div>
+    </ul>
+</nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#xgpersonal").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xgpersonal";
+        });
+        $("#modifypw").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/modifypw";
+        });
+        $("#goodsfb").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsfb";
+        });
+        $("#xggoods").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xggoods";
+        });
+        $("#post").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/post";
+        });
+        $("#goodsdel").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsdel";
+        });
+        $("#msgtongzhi").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/msgtongzhi";
+        });
+        $("#renzheng").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/renzheng";
+        });
+    });
+</script>
+<table id="table1" border=1 class="table table-bordered table-hover definewidth m10" style="width:70%;margin:100px 0 0 250px;font-size:17px;">
+    <thead>
+    <tr>
+        <th>商品序号</th>
+        <th>商品名称</th>
+        <th>原价</th>
+        <th>二手价</th>
+        <th>商品数目</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach goodslist as $k=>$v }]
+    <tr>
+        <td>[{$k+1}]</td>
+        <td>[{$v.goods_name}]</td>
+        <td>[{$v.cost_price}]</td>
+        <td>[{$v.ershou_price}]</td>
+        <td>[{$v.goods_number}]</td>
+        <td>
+            <a value="[{$v.goods_id}]" href="#">删除商品</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>
+<script>
+    /*简单的jq，获取标签a点击的值*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_HOME_URL}]Personal/goodsdel",
+                    data: "goods_id=" + id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('商品删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('商品删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

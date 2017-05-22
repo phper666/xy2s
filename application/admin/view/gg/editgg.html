@@ -1,0 +1,65 @@
+[{include file="Gg/header" /}]   <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Gg/editgg" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="15%" class="tableleft">当前管理员：</td>
+            <td width="15%" class="tableleft">
+                <input type="text" name="am_name" id="am_name" value="[{$Think.Session.am_name}]" readonly="true"/>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">标题：</td>
+            <td width="15%" class="tableleft">
+                <select name="gg_id" id="biaoti">
+                    [{foreach gglist as $k=>$v }]
+                    [{if $v.am_name == $Think.Session.am_name }]
+                    <option value="[{$v.gg_id}]" gg_content="[{$v.gg_content}]" gg_status="[{$v.gg_status}]">[{$v.gg_name}]</option>
+                    [{/if}]
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">新标题</td>
+            <td width="85%" class="tableleft">
+                <input type="text" name="gg_name" id="gg_name"/>
+            </td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">内容</td>
+            <td width="85%" class="tableleft">
+                <textarea id="gg_content" name="gg_content" rows="8" cols="50"></textarea>
+            </td>
+        </tr>
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">修改</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Gg/Gglist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+    <!--一个简单的jq-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#gg_name").attr('value', $("#biaoti option:selected").html());
+            $("#gg_content").attr('value', $("#biaoti option:selected").attr('gg_content'));
+            $("#biaoti").change(function () {
+                $("#gg_name").attr('value', $("#biaoti option:selected").html());
+                $("#gg_content").attr('value', $("#biaoti option:selected").attr('gg_content'));
+            });
+        });
+    </script>
+</form>
+</body>
+</html>
+<script>
+    $(function () {
+        $('#backid').click(function () {
+            window.location.href = "index.html";
+        });
+
+    });
+</script>

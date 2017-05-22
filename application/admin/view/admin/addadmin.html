@@ -1,0 +1,41 @@
+[{include file="Admin/header" /}]  <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Admin/addadmin" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">登录名</td>
+            <td><input type="text" name="am_name"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">密码</td>
+            <td><input type="password" name="am_password"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">真实姓名</td>
+            <td><input type="text" name="real_name"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">邮箱</td>
+            <td><input type="text" name="am_email"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">角色</td>
+            <td>
+                <select name="role_id" id="select">
+                    <!--循环出角色名-->
+                    [{foreach rolelist as $k=>$v }]
+                    <option value="[{$v.role_id}]">[{$v.role_name}]</option>
+                    [{/foreach}]
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Admin/adminlist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

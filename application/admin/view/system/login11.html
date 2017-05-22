@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="MSHTML 6.00.6000.16674" name="GENERATOR"/>
+    <title>用户登录</title>
+    <link href="[{$Think.const.ADMIN_CSS_URL}]User_Login.css" type="text/css" rel="stylesheet"/>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js" type="text/javascript"></script>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.cookie.js" type="text/javascript"></script>
+    <!--用ajax来判断账号和验证码是否出错-->
+    <script type="text/javascript">
+        /*当账号失去焦点的时候验证*/
+        $(document).ready(function () {
+            $("#admin_user").blur(function () {
+                var a = $("#admin_user").attr('value');
+                var name = $("#admin_user").attr('value');
+                $.cookie('admin_user', name);
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]System/validated",
+                    data: "am_name=" + a,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        console.log(msg);
+                        if (msg == '存在') {
+                            $("#user_img").attr("src", "[{$Think.const.STATIC_URL}]admin/img/check_right.gif");
+                            $("#user_span").html('');
+                        } else {
+                            $("#user_img").attr("src", "");
+                            $("#user_span").html(msg);
+                            $("#admin_user").attr('value', $.cookie('admin_user'));
+                        }
+                    }
+                });
+            });
+
+            /*当验证码输入的时候验证*/
+            $("#captcha").change(function () {
+                var b = $("#captcha").attr('value');
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]System/validated",
+                    data: "captcha=" + b,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('error');
+                    },
+                    success: function (msg) {
+                        if (msg == '验证码正确') {
+                            $("#user_captcha").attr("src", "[{$Think.const.STATIC_URL}]admin/img/check_right.gif");
+                            $("#user_cap_span").html('');
+                        } else {
+                            $("#user_captcha").attr("src", "");
+                            alert('验证码错误');
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body id="userlogin_body">
+<div></div>
+<div id="user_login">
+    <dl>
+        <dd id="user_top">
+            <ul>
+                <li class="user_top_l"></li>
+                <li class="user_top_c"></li>
+                <li class="user_top_r"></li>
+            </ul>
+        </dd>
+        <dd id="user_main">
+            <form action="[{$Think.const.APP_ADMIN_URL}]System/login" method="post">
+                <ul>
+                    <li class="user_main_l"></li>
+                    <li class="user_main_c">
+                        <div class="user_main_box">
+                            <ul>
+                                <li class="user_main_text">用户名：</li>
+                                <li class="user_main_input">
+                                    <input class="TxtUserNameCssClass" id="admin_user" maxlength="20" name="am_name">
+                                    <img id="user_img" src="" alt=""/>
+                                </li>
+                                <li><span style="color:red;" id="user_span"></span></li>
+                            </ul>
+                            <ul>
+                                <li class="user_main_text">密&nbsp;&nbsp;&nbsp;&nbsp;码：</li>
+                                <li class="user_main_input">
+                                    <input class="TxtPasswordCssClass" id="admin_psd" name="am_password"
+                                           type="password">
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="user_main_text">验证码：</li>
+                                <li class="user_main_input">
+                                    <input class="TxtValidateCodeCssClass" id="captcha" name="captcha" type="text">
+                                    <img id="user_captcha" src="" alt=""/>
+                                    <img id="va" src="[{:captcha_src()}]" alt="captcha"
+                                         style="position:relative;left:45px;top:5px;"/>
+                                </li>
+                                </li>
+                                <!--一个简单的jq，点击验证码就刷新-->
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#va").click(function () {
+                                            $("#va").attr('src', "[{:captcha_src()}]");
+                                        });
+                                    });
+                                </script>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="user_main_r">
+
+                        <input style="border: medium none; background: url('[{$Think.const.ADMIN_IMG_URL}]user_botton.gif') repeat-x scroll left top transparent; height: 122px; width: 111px; display: block; cursor: pointer;"
+                               value="" type="submit">
+                    </li>
+                </ul>
+            </form>
+        </dd>
+        <dd id="user_bottom">
+            <ul>
+                <li class="user_bottom_l"></li>
+                <li class="user_bottom_c"><span style="margin-top: 40px;"></span></li>
+                <li class="user_bottom_r"></li>
+            </ul>
+        </dd>
+    </dl>
+</div>
+<span id="ValrUserName" style="display: none; color: red;"></span><span id="ValrPassword"
+                                                                        style="display: none; color: red;"></span><span
+        id="ValrValidateCode" style="display: none; color: red;"></span>
+<div id="ValidationSummary1" style="display: none; color: red;"></div>
+</body>
+</html>

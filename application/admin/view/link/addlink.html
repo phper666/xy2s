@@ -1,0 +1,21 @@
+[{include file="Link/header" /}]   <!--包含头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Link/addlink" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="15%" class="tableleft">链接名：</td>
+            <td><input type="text" name="link_name" value=""/></td>
+        </tr>
+        <tr width="15%">
+            <td width="15%" class="tableleft">链接：</td>
+            <td><input type="text" name="link_link"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Link/addlink" class="btn btn-success" name="backid" id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>

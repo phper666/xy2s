@@ -1,0 +1,106 @@
+[{include file="Forum/header" /}]  <!--包含头部文件-->
+<!--一个jq，用来选择总栏目，就显示出对应的版主-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#select_all").change(function () {
+            var fac_id = $("#select_all option:selected").attr("value");
+            var fac_name = $("#select_all option:selected").text();
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]Forum/column_msg",
+                data: "fac_id=" + fac_id,
+                dataType: 'json',
+                async: true, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    $("#am_name").attr("value", msg.am_name);
+                }
+            });
+        });
+    });
+</script>
+<style>
+    .columnview {
+        display: none;
+    }
+</style>
+<form action="[{$Think.const.APP_ADMIN_URL}]Forum/delcolumn" method="post" class="definewidth m20">
+<table id="table3" class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td width="10%" class="tableleft">删除栏目选择</td>
+        <td>
+            <select name="column_select" id="select_column">
+                <option value="1">总栏目</option>
+                <option value="2">子栏目</option>
+            </select>
+        </td>
+    </tr>
+</table>
+<table id="table1" class="table table-bordered table-hover definewidth m10">
+    <!--总栏目开始-->
+    <tr>
+        <td width="10%" class="tableleft">总栏目选择 <span style="color:red;">(会默认删除该栏目下的所有子栏目)</span></td>
+        <td>
+            <select name="fac_id" id="select_all">
+                <!--循环出栏目名-->
+                [{foreach faclist as $k=>$v }]
+                <option value="[{$v.fac_id}]">[{$v.fac_name}]</option>
+                [{/foreach}]
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" class="tableleft">当前栏目版主</td>
+        <td><input disabled="disabled" type="text" id="am_name" value=""/></td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">删除</button>
+            &nbsp;&nbsp;
+            <a href="[{$Think.const.APP_ADMIN_URL}]Forum/forumlist" class="btn btn-success" name="backid"
+               id="backid">返回列表</a>
+        </td>
+    </tr>
+</table>
+<!--子栏目开始-->
+<table id="table2" class="table table-bordered table-hover definewidth m10">
+    <tr>
+        <td width="10%" class="tableleft">子栏目选择</td>
+        <td>
+            <select name="fsc_id" id="select_sub">
+                <!--循环出栏目名-->
+                [{foreach fsclist as $k=>$v }]
+                <option value="[{$v.fsc_id}]">[{$v.fsc_name}]</option>
+                [{/foreach}]
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">删除</button>
+            &nbsp;&nbsp;
+            <a href="[{$Think.const.APP_ADMIN_URL}]Forum/forumlist" class="btn btn-success" name="backid"
+               id="backid">返回列表</a>
+        </td>
+    </tr>
+</table>
+<!--一个简单的jq，选择修改总栏目就显示总栏目，修改子栏目就显示子栏目-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table2").addClass('columnview');
+        $("#select_column").change(function () {
+            if ($("#select_column option:selected").attr('value') == 1) {
+                $("#table1").removeClass('columnview');
+                $("#table2").addClass('columnview');
+            } else if ($("#select_column option:selected").attr('value') == 2) {
+                $("#table1").addClass('columnview');
+                $("#table2").removeClass('columnview');
+            }
+        });
+    });
+</script>
+</form>

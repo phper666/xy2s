@@ -1,0 +1,81 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                <div id="college">[{$Think.Cookie.school_name}]</div>
+            </div>
+        </li>
+        [{foreach catelist as $k=>$v }]
+        <li class="category-1 catg">
+            [{if $v.cat_level == 0 }]
+            <a href="[{$Think.const.APP_HOME_URL}]Index/index?cat_id=[{$v.cat_id}]" target="_blank">
+                <i class="nav-icons">
+                    <!--<img src="[{$Think.const.IMG_URL}]1.png" alt="校园代步">-->
+                </i>
+                <h3>[{$v.cat_name}]</h3>
+            </a>
+            [{/if}]
+            <div class="sub-nav">
+                [{foreach catelist as $k1=>$v1 }]
+                [{if $v.cat_id == $v1.parent_id }]
+                <a  style="line-height: 30px;" href="[{$Think.const.APP_HOME_URL}]Index/index?cat_id=[{$v1.cat_id}]" target="_blank">[{$v1.cat_name}]</a>
+                [{/if}]
+                [{/foreach}]
+            </div>
+        </li>
+        [{/foreach}]
+    </ul>
+</nav>
+<div class="container">
+    <div class="main center">
+        <div class="wrap-site mt20">
+            <img style="margin-left:415px;" src="[{$Think.const.IMG_URL}]laba.jpg" alt="">
+            <div class="recom-title"><font size="5" color="#646464">校园公告</font></div>
+            <ul class="recom-list group"style="font-size:18px;margin:auto;">
+                [{foreach gglist as $k=>$v }]
+                [{if $v.gg_status == 1 }]
+                公告内容：[{$v.gg_content}]<br />
+                [{/if}]
+                [{/foreach}]
+            </ul>
+        </div>
+        <div class="label-wr center clearfix">
+            <div id="nav-labels">
+                <a id="new_pro" class="labels" href="[{$Think.const.APP_HOME_URL}]Index/index">商品专区</a>
+            </div>
+            <div id="link-labels">
+                <a id="hot-topic" class="labels" href="javascript:;">求购信息</a>
+            </div>
+        </div>
+        <div class="item-list">
+            <ul class="items clearfix">
+                [{foreach goodslist as $k=>$v }]
+                <li class="item1">
+                    <!--判断是否已经登录，显示不同的页面-->
+                    [{if $Think.Cookie.username == '' }]
+                    <a href="[{$Think.const.APP_HOME_URL}]Goods/shangpin?goods_id=[{$v.goods_id}]" class="img1" target="_blank">
+                        [{else}]
+                        <a href="[{$Think.const.APP_HOME_URL}]Goods/shangpin_login?goods_id=[{$v.goods_id}]" class="img1" target="_blank">
+                            [{/if}]
+                            <img src="[{$Think.const.STATIC_URL}][{$v.goods_img1}]" alt=""></a>
+                        <div class="info1">
+                            <div class="price1">[{$v.ershou_price}]</div>
+                            <div class="name1">
+                                <a href="" target="_blank">[{$v.goods_name}]</a>
+                            </div>
+                            [{foreach schoollist as $k1=>$v1 }]
+                            [{if $v1.school_id == $v.school_id }]
+                            <div class="place"><span>[{$v1.school_name}]</span></div>
+                            [{/if}]
+                            [{/foreach}]
+                        </div>
+                </li>
+                [{/foreach}]
+            </ul>
+        </div>
+        <div class="pages">[{$page}]</div>
+    </div>
+</div>
+<div class="return-to-top" style="display: none;"><a href=""></a></div>

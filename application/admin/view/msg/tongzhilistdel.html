@@ -1,0 +1,55 @@
+[{include file="Msg/header" /}]  <!--包含头部文件-->
+<table id="table1" class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>通知ID</th>
+        <th>发送通知人</th>
+        <th>被通知用户</th>
+        <th>通知内容</th>
+        <th>通知时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach tz as $k=>$v }]
+    <tr>
+        <td>[{$v.tz_id}]</td>
+        <td>[{foreach a as $k1=>$v1 }][{if $v.am_id==$v1.am_id }][{$v1.am_name}][{/if}][{/foreach}]</td>
+        <td>[{foreach u as $k1=>$v1 }][{if $v.user_id==$v1.user_id }][{$v1.username}][{/if}][{/foreach}]</td>
+        <td>[{$v.tz_content}]</td>
+        <td>[{$v.add_time}]</td>
+        <td>
+            <a value="[{$v.tz_id}]" href="#">删除</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>
+<script>
+    /*简单的jq，获取标签a点击的值*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]Msg/tongzhilistdel",
+                    data: "tz_id=" + id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('通知删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('通知删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,207 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                [{foreach userlist as $k=>$v }]
+                <div id="college">[{$v.school_name}]</div>
+                [{/foreach}]
+            </div>
+        </li>
+        <div id="xgpersonal" class="button" data-type="l" style="width:110px;">完善信息</div>
+        <div id="goodsfb" class="button" data-type="l" style="width:110px;">发布的商品</div>
+        <div id="xggoods" class="button" data-type="l" style="width:110px;">商品信息修改</div>
+        <div id="goodsdel" class="button" data-type="l" style="width:110px;">商品删除</div>
+        <div id="post" class="button" data-type="l" style="width:110px;">帖子管理</div>
+        <div id="msgtongzhi" class="button" data-type="l" style="width:110px;">消息通知<span style="color:red;">([{$tz}])</span></div>
+        <div id="modifypw" class="button" data-type="l" style="width:110px;">修改密码</div>
+        <div id="renzheng" class="button" data-type="l" style="width:110px;">认证</div>
+    </ul>
+</nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#xgpersonal").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xgpersonal";
+        });
+        $("#modifypw").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/modifypw";
+        });
+        $("#goodsfb").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsfb";
+        });
+        $("#xggoods").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xggoods";
+        });
+        $("#post").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/post";
+        });
+        $("#goodsdel").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsdel";
+        });
+        $("#msgtongzhi").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/msgtongzhi";
+        });
+        $("#renzheng").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/renzheng";
+        });
+    });
+</script>
+<iframe id="tupianiframe" src="[{$Think.const.IMG_URL}][{$Think.Cookie.user_img}]" scrolling="no" frameborder="1" height="150" width="150"></iframe>
+<div class="xgpersonal">
+    <form id="myform" action="[{$Think.const.APP_HOME_URL}]Personal/xgpersonal" method="post" enctype="multipart/form-data">
+        [{if empty($userlist) }]
+        <div class="account">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input class="account_name" type="text" name="account_name"/>
+        </div>
+        <div class="account">手机号码：
+            &nbsp;<input type="text" name="user_tel" class="user_tel"/>
+        </div>
+        <div class="account">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q：
+            <input type="text" name="user_qq" class="user_qq"/>
+        </div>
+        <div class="account">E&nbsp;m&nbsp;&nbsp;a&nbsp;&nbsp;i&nbsp;l：
+            &nbsp;<input type="text" name="user_email" class="user_email"/>
+        </div>
+        <div class="account">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：
+            <select name="user_school" style="width:300px;height:45px;margin:20px 0 0 20px;font-size:16px;">
+                [{foreach schoollist as $k1=>$v1 }]
+                <option value="[{$v1.school_id}]">[{$v1.school_name}]</option>
+                [{/foreach}]
+                <option value="0">其它学校</option>
+            </select>
+        </div>
+        <div class="account">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级：
+            <select name="nianji" style="width:300px;height:45px;margin:20px 0 0 20px;font-size:16px;">
+                <option value="2012">2012级</option>
+                <option value="2013">2013级</option>
+                <option value="2014">2014级</option>
+                <option value="2015">2015级</option>
+                <option value="2016">2016级</option>
+            </select>
+        </div>
+        <div class="account">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：
+            <input type="text" name="zhuanye" class="user_zhuanye"/>
+        </div>
+        [{else}]
+        [{foreach userlist as $k=>$v }]
+        <div class="account">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input class="account_name" type="text" value="[{$v.account_name}]" name="account_name"/>
+        </div>
+        <div class="account">手机号码：
+            &nbsp;<input type="text" value="[{$v.user_tel}]" name="user_tel" class="user_tel"/>
+        </div>
+        <div class="account">Q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q：
+            <input type="text" value="[{$v.user_qq}]" name="user_qq" class="user_qq"/>
+        </div>
+        <div class="account">E&nbsp;m&nbsp;&nbsp;a&nbsp;&nbsp;i&nbsp;l：
+            &nbsp;<input type="text" value="[{$v.user_email}]" name="user_email" class="user_email"/>
+        </div>
+        <div class="account">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：
+            <select name="user_school" style="width:300px;height:45px;margin:20px 0 0 20px;font-size:16px;">
+                <option value="[{$v.school_id}]">[{$v.school_name}]</option>
+                [{foreach schoollist as $k1=>$v1 }]
+                <option value="[{$v1.school_id}]">[{$v1.school_name}]</option>
+                [{/foreach}]
+                <option value="0">其它学校</option>
+            </select>
+        </div>
+        <div class="account">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级：
+            <select name="nianji" style="width:300px;height:45px;margin:20px 0 0 20px;font-size:16px;">
+                <option value="[{$v.nianji}]">[{$v.nianji}]</option>
+                <option value="2012">2012级</option>
+                <option value="2013">2013级</option>
+                <option value="2014">2014级</option>
+                <option value="2015">2015级</option>
+                <option value="2016">2016级</option>
+            </select>
+        </div>
+        <div class="account">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：
+            <input type="text" value="[{$v.zhuanye}]" name="zhuanye" class="user_zhuanye"/>
+        </div>
+        [{/foreach}]
+        [{/if}]
+        <div class="account-img">更换头像：
+            <input id="user_img" value="" type="file" name="user_img" id="user_img"/>
+        </div>
+        <div id="jdt"></div>
+        <div class="account-sub">
+            <input id="sub" type="submit" value="完成修改"/>
+        </div>
+    </form>
+    <!--一个简单的jq，直接上传图片，并无刷新显示-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //让选择的图片显示到页面上,用了uploadify
+            $('#user_img').uploadify({
+                'swf': '[{$Think.const.STATIC_URL}]swf/uploadify.swf',
+                'uploader': '[{$Think.const.APP_HOME_URL}]Personal/upload',
+                'fileTypeExts': '*.gif; *.jpg; *.png',  //只允许上传的图片
+                'queueID': 'jdt',
+                'buttonText': '上传头像',
+                'fileSizeLimit': '2MB',
+                'width': '180',
+                'method': 'POST',  //如果要传参数，就必须改为GET
+                'onUploadSuccess': function (file, data, response) {
+                    //因为TP5返回了一个html文本，必须要截取才能获得路径
+                    a = data.substring(0, data.indexOf('<div'));
+                    $('#tupianiframe').attr('src', a);
+                    $('.avatar').attr('src', a);
+                    /* window.location.reload();*/
+                },
+                'onSelectError': function (file, errorCode, errorMsg) {
+                    this.queueData.errorMsg = '只能上传2MB一下的图片';
+                }
+            });
+        });
+    </script>
+    <!--一个简单的jq，姓名和学校和专业和手机或QQ不能为空-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var a = /^[\u4e00-\u9fa5]+$/; //中文正则
+            var b = /^1[34578]\d{9}$/; //电话号码正则
+            var c = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/; //邮箱正则
+            var d = /^[1-9]\d{4,12}$/;   //qq正则5到13位，首位不能为0
+            $('#myform').submit(function(){
+                var name    = $('#myform .account_name').val();
+                var tel     = $('#myform .user_tel').val();
+                var qq      = $('#myform .user_qq').val();
+                var email   = $('#myform .user_email').val();
+                var zhuanye = $('#myform .user_zhuanye').val();
+                if(name == ''){
+                    alert('姓名不能为空');
+                    return false;
+                }else{
+                    if(!a.test(name)){
+                        alert('姓名只能为中文');
+                        return false;
+                    }
+                }
+                if((tel == '') && (qq == '')){
+                    alert('电话和QQ必填一个');
+                    return false;
+                }
+                if(email != ''){
+                    if(!c.test(email)){
+                        alert('邮箱格式错误');
+                        return false;
+                    }
+                }
+                if(zhuanye == ''){
+                    alert('专业不能为空');
+                    return false;
+                }
+                if(tel != ''){
+                    if(!b.test(tel)){
+                        alert('电话号码格式错误,请重新输入');
+                        return false;
+                    }
+                }
+                if(qq != ''){
+                    if(!d.test(qq)){
+                        alert('QQ格式错误,请重新输入');
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+</div>

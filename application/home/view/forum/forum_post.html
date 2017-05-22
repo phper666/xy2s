@@ -1,0 +1,245 @@
+<div id="hd">
+    <div class="wp">
+        <div class="hdc cl">
+            <h2><a href="#">
+                <form method="post" autocomplete="off" id="lsform" action="#">
+                    <div class="fastlg cl">
+                        <span id="return_ls" style="display:none"></span>
+                        <div class="y pns"></div>
+                </form>
+
+        </div>
+        <div id="nv" style="top: 0px; left: 194.5px; z-index: 199;">
+            <ul>
+                [{foreach faclist as $k=>$v }]
+                <li id="forum_index"><a href="[{$Think.const.APP_HOME_URL}]Forum/index?fac_id=[{$v.fac_id}]">[{$v.fac_name}]</a></li>
+                [{/foreach}]
+            </ul>
+        </div>
+    </div>
+    <div id="scbar" class="scbar_narrow cl">
+        <form id="scbar_form" method="post" autocomplete="off" action="[{$Think.const.APP_HOME_URL}]Forum/forum_post" target="_blank">
+            <!--隐藏发送id-->
+            <input type="hidden" name="fac_id" value="[{$fac_id}]">
+            <input type="hidden" name="fsc_id" value="[{$fsc_id}]">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="scbar_icon_td"></td>
+                    <td class="scbar_txt_td">
+                        <input type="text" name="srchtxt" id="scbar_txt" class=" xg1" placeholder="请输入搜索内容"></td>
+                    <td class="scbar_type_td"><a href="javascript:;" id="scbar_type" class="xg1">帖子</a></td>
+                    <td class="scbar_btn_td">
+                        <button name="srch_submit" value="true" type="submit" id="scbar_btn" sc="1" class="pn pnc">
+                            <strong class="xi2">搜索</strong></button>
+                    </td>
+                    <td class="scbar_hot_td">
+                        <div id="scbar_hot">
+                            <strong class="xw1">热搜: </strong>
+                            <a href="#" target="_blank" class="xi2" sc="1">网页游戏</a>
+                            <a href="#" target="_blank" class="xi2" sc="1">交友</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--以上为头部-->
+
+<div id="wp" class="wp">
+    <style id="diy_style" type="text/css"></style>
+    <!--[diy=diynavtop]-->
+    <div id="diynavtop" class="area"></div><!--[/diy]-->
+    <div id="pt" class="bm cl">
+        <div class="z">
+            <a href="[{$Think.const.APP_HOME_URL}]forum/index?fac_id=[{$fac_id}]" class="nvhm"></a><em>»</em>
+            <a href="[{$Think.const.APP_HOME_URL}]forum/index?fac_id=[{$fac_id}]">首页</a> <em>›</em>
+            <a href="[{$Think.const.APP_HOME_URL}]forum/forum_post?fac_id=[{$fac_id}]&fsc_id=[{$fsc_id}]">[{$fsc.fsc_name}]</a>
+        </div>
+    </div>
+    <div class="wp">
+        <!--[diy=diy1]-->
+        <div id="diy1" class="area"></div><!--[/diy]-->
+    </div>
+    <div class="boardnav">
+        <div id="ct" class="wp cl">
+            <div class="mn">
+                <div class="bm bml pbn">
+                    <div class="bm_h cl">
+                        <h1 class="xs2">
+                            <a href="">[{$fsc.fsc_name}]</a>
+                            <span class="xs1 xw0 i">今日主题帖子: <strong class="xi1">[{$newnum}]</strong>
+                    </div>
+                </div>
+
+                <div id="pgt" class="bm bw0 pgs cl">
+                    <span id="fd_page_top"></span>
+                    <span class="pgb y"><a href="[{$Think.const.APP_HOME_URL}]forum/index?fac_id=[{$fac_id}]">返&nbsp;回</a></span>
+                    <a style="cursor: pointer;" id="maodian" title="发新帖">
+                        <img src="[{$Think.const.IMG_URL}]pn_post.png" alt="发帖">
+                    </a>
+                    <script>
+                        $(document).ready(function(){
+                            $('#maodian').click(function () {
+                                $("#myEditor").focus();
+                            });
+                        });
+                    </script>
+                </div>
+                <div id="threadlist" class="tl bm bmw">
+                    <div class="th">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                                <th colspan="2">
+                                    <form id="allzhuti" action="[{$Think.const.APP_HOME_URL}]Forum/forum_post" method="post">
+                                        <div class="tf">
+                                            <a href="#">全部主题</a>&nbsp;
+                                            <a href="javascript:">今天发布</a>&nbsp;
+                                            <a href="javascript:">最热门</a>&nbsp;
+                                            <a href="javascript:">显示置顶</a>
+                                            <input type="hidden" class="zhuti" name="zhuti">
+                                            </span>
+                                        </div>
+                                        <!--隐藏发送id-->
+                                        <input type="hidden" name="fac_id" value="[{$fac_id}]">
+                                        <input type="hidden" name="fsc_id" value="[{$fsc_id}]">
+                                    </form>
+                                    <!--一个简单的jq，点击不同的链接，显示出不同的帖子-->
+                                    <script type="text/javascript">
+                                        $(document).ready(function(){
+                                            $('#allzhuti a').click(function(e){
+                                                $('.zhuti').attr('value',$(e.target).html());
+                                                $('#allzhuti').submit();
+                                            });
+                                        });
+                                    </script>
+                                </th>
+                                <td class="by">作者</td>
+                                <td class="num">回复/查看</td>
+                                <td class="by">最后发表</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="bm_c">
+                        <div id="forumnew" style="display:none"></div>
+                        <table summary="forum_2" cellspacing="0" cellpadding="0" id="threadlisttableid">
+                            <tbody id="normalthread_1">
+                            [{foreach p as $k=>$v }]
+                            <tr>
+                                <td class="icn">
+                                    <a href="#" target="_blank">
+                                        <img src="[{$Think.const.IMG_URL}]folder_new.gif">
+                                    </a>
+                                </td>
+                                <th class="new">
+                                    <a href="[{$Think.const.APP_HOME_URL}]Forum/forum_reply?fac_id=[{$v.fac_id}]&fsc_id=[{$v.fsc_id}]&fp_id=[{$v.fp_id}]" class="s xst">[{$v.fp_biaoti}]</a>
+                                </th>
+                                <td class="by">
+                                    <cite>
+                                        <!--查询出发帖人名字-->
+                                        [{foreach user as $k1=>$v1 }]
+                                        [{if $v1.user_id == $v.user_id }]
+                                        <a href="#">[{$v1.username}]</a></cite>
+                                        [{/if}]
+                                        [{/foreach}]
+                                    <em><span class="xi1"><span>[{:strstr($v.add_time,' ',true)}]&nbsp;</span></em>
+                                </td>
+                                <td class="num">
+                                    <a href="#" class="xi2">
+                                        <!--查询出总回复次数-->
+                                        [{foreach data2 as $k1=>$v1 }]
+                                        [{if $v.fp_id == $k1 }]
+                                        [{$v1}]
+                                        [{/if}]
+                                        [{/foreach}]
+                                    </a>
+                                    <em>[{$v.click_count}]</em></td>
+                                <td class="by">
+                                    <cite><a href="#" c="1" mid="card_9409">
+                                        <!--主题id相同的就显示出最新留言的用户-->
+                                        [{foreach data1 as $k1=>$v1 }]
+                                        [{if $v.fp_id == $k1 }]
+                                        [{$v1}]
+                                        [{/if}]
+                                        [{/foreach}]
+                                    </a></cite>
+                                    <em><span>
+                                        <!--主题id相同的就显示出最新时间-->
+                                        [{foreach fsc_time as $k1=>$v1 }]
+                                        [{if $v.fp_id == $k1 }]
+                                            [{$v1}]
+                                        [{/if}]
+                                        [{/foreach}]
+                                    </span></em>
+                                </td>
+                            </tr>
+                            [{/foreach}]
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="font-size:16px;margin:0 0 0 23%;">[{$page}]</div>
+                <div id="f_pst" class="bm">
+                    <div class="bm_h">
+                        <h2 >快速发帖</h2>
+                    </div>
+                    <div class="bm_c">
+                        <form method="post" id="fastpostform" action="[{$Think.const.APP_HOME_URL}]forum/forum_post">
+                            <!--隐藏发送id-->
+                            <input type="hidden" name="fac_id" value="[{$fac_id}]">
+                            <input type="hidden" name="fsc_id" value="[{$fsc_id}]">
+                            <div class="pbt cl">
+                                标题：<input type="text" id="subject" name="subject" class="px" tabindex="11" placeholder="建议输入求购物品名称/不能超过30个字" style="width: 25em;border:1px solid #6EAADF">
+                            </div>
+                            <!--style给定宽度可以影响编辑器的最终宽度-->
+                            <script type="text/plain" id="myEditor" style="width:900px;height:260px;"></script>
+                            <script type="text/javascript">
+                                //实例化编辑器
+                                var um = UM.getEditor('myEditor');
+
+                                //判断内容是否为空
+                                function hasContent() {
+                                    return um.hasContents();
+                                }
+                            </script>
+                            <div id="fastpostreturn" style="margin:-5px 0 5px"></div>
+                            <p class="ptm pnpost">
+                                <button name="fastpostsubmit" value="true" type="submit" id="fastpostsubmit" tabindex="13" class="pn pnc"><strong>发表帖子</strong></button>
+                            </p>
+                        </form>
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                /*一个简单的jq，让标题和内容不能为空*/
+                                $("#fastpostsubmit").click(function(){
+                                    if($("#subject").attr('value') == ''){
+                                        alert('标题不能为空');
+                                        return false;
+                                    }
+                                    if($("#subject").attr('value').length > 30){
+                                        alert('标题太长');
+                                        return false;
+                                    }
+                                    if(!hasContent()){
+                                        alert('内容不能为空');
+                                        return false;
+                                    }
+                                    /*判断用户是否登录，如果没登陆不能发帖*/
+                                    if($.cookie('username') == null){
+                                        alert('请登录再来发帖');
+                                        return false;
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

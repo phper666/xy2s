@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台管理登录</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="robots" content="noindex,nofollow">
+    <link href="[{$Think.const.ADMIN_CSS_URL}]admin_login.css" rel="stylesheet"/>
+    <style>
+        #login_btn_wraper {
+            text-align: center;
+        }
+
+        #login_btn_wraper .tips_success {
+            color: #fff;
+        }
+
+        #login_btn_wraper .tips_error {
+            color: #DFC05D;
+        }
+
+        #login_btn_wraper button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body onkeypress="if (event.keyCode == 13) validate();">
+<div class="wrap">
+    <h1><a>后台登录</a></h1>
+    <div class="login">
+        <ul>
+            <li>
+                <input class="input" id="js-admin-name" name="am_name" type="text" placeholder="输入管理员" title="" value=""
+                       data-rule-required="true" data-msg-required=""/>
+            </li>
+            <li>
+                <input class="input" id="admin_pwd" type="password" name="am_password" placeholder="请输入密码" title=""
+                       data-rule-required="true" data-msg-required=""/>
+            </li>
+            <li class="verifycode-wrapper" style="cursor:pointer;">
+                <img id="captcha_img" onclick="this.src='[{:captcha_src()}]?d='+Math.random();" alt="点击更换" title="点击更换"
+                     src="[{:captcha_src()}]" name="captcha">
+            </li>
+            <li>
+                <input class="input" type="text" name="captcha" id="captcha" placeholder="请输入验证码"/>
+            </li>
+        </ul>
+        <div id="login_btn_wraper">
+            <button type="submit" name="submit" class="btn js-ajax-submit">登录</button>
+            <div id="tishi"></div>
+        </div>
+    </div>
+</div>
+<script src="[{$Think.const.STATIC_URL}]js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="[{$Think.const.ADMIN_JS_URL}]common.js"></script>
+<script>
+    ;
+    (function () {
+        document.getElementById('js-admin-name').focus();
+    })();
+</script>
+<!--一个简单的jq，用来验证账号和验证码是否正确-->
+<script>
+    function validate() {
+        var fl = false;
+        if ($("#js-admin-name").val() == '') {
+            $("#tishi").html('账号不能为空');
+            return false;
+        }
+        if ($("#admin_pwd").val() == '') {
+            $("#tishi").html('密码不能为空');
+            return false;
+        }
+        if ($("#captcha").val() == '') {
+            $("#tishi").html('验证码不能为空');
+            return false;
+        } else {
+            var captcha = $("#captcha").val();
+            var am_name = $("#js-admin-name").val();
+            var am_password = $("#admin_pwd").val();
+            $.ajax({
+                type: "POST",
+                url: "[{$Think.const.APP_ADMIN_URL}]System/login",
+                data: "captcha=" + captcha + "&am_name=" + am_name + "&am_password=" + am_password,
+                async: false, //默认为true 异步
+                error: function () {
+                    alert('error');
+                },
+                success: function (msg) {
+                    if (msg == 'captcha error') {
+                        $("#tishi").html('验证码错误');
+                        $("#captcha_img").attr('src', "[{:captcha_src()}]" + "?d=" + Math.random());
+                        fl = false;
+                    } else if (msg == 'password error') {
+                        $("#tishi").html('密码错误');
+                        $("#captcha_img").attr('src', "[{:captcha_src()}]" + "?d=" + Math.random());
+                        fl = false;
+                    } else {
+                        fl = true;
+                    }
+                }
+            });
+            if (!fl) {
+                return false;
+            }
+        }
+        window.location.href = "[{$Think.const.APP_ADMIN_URL}]Index/index";
+    }
+    $(document).ready(function () {
+        $("#login_btn_wraper").click(function () {
+            validate();
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+[{include file="School/header"/}]  <!--包含公共头部文件-->
+<table id="table1" class="table table-bordered table-hover definewidth m10" style="width:90%;">
+    <thead>
+    <tr>
+        <th>学校ID</th>
+        <th>学校地区ID</th>
+        <th>学校名</th>
+        <th>搜索关键字</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach schoollist as $k=>$v }]
+    <tr>
+        <td>[{$v.school_id}]</td>
+        <td>[{$v.school_area}]</td>
+        <td>[{$v.school_name}]</td>
+        <td>[{$v.keywords}]</td>
+        <td>
+            <!--为了获取要删除的数据id-->
+            <a value="[{$v.school_id}]" href="#">删除</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<script>
+    /*简单的jq，获取标签a点击的值*/
+    $(document).ready(function () {
+        $("#table1 a").click(function (e) {
+            if (confirm("确定要删除吗？")) {
+                var id = $(e.target).attr('value');
+                /*用一个ajax把获取到的数据发送到后端去验证删除，无刷新删除*/
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_ADMIN_URL}]School/delschool",
+                    data: "school_id=" + id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('出错');
+                    },
+                    success: function (msg) {
+                        if (msg == '删除成功') {
+                            alert('学校删除成功');
+                            window.location.reload();
+                        } else if (msg == '删除失败') {
+                            alert('学校删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

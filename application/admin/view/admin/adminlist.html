@@ -1,0 +1,43 @@
+[{include file="Admin/header" /}]  <!--包含头部文件-->
+<form class="form-inline definewidth m20" action="#" method="get">
+    管理员名称：
+    <input type="text" name="am_name" id="username" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+    &nbsp;&nbsp;
+</form>
+<table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>用户名称</th>
+        <th>角色名称</th>
+        <th>真实姓名</th>
+        <th>邮箱</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    [{foreach adminlist as $k=>$v }]
+    <tr>
+        <td>[{$k+1}]</td>
+        <td>[{$v.am_name}]</td>
+        <!--显示出角色的名称-->
+        [{if $v.role_id == 0 }]
+        <td>超级管理员</td>
+        [{/if}]
+        [{foreach rolelist as $k1=>$v1 }]
+        [{if $v1.role_id == $v.role_id }]
+        <td>[{$v1.role_name}]</td>
+        [{/if}]
+        [{/foreach}]
+        <!--结束角色名称循环对比-->
+        <td>[{$v.real_name}]</td>
+        <td>[{$v.am_email}]</td>
+        <td>[{$v.am_regtime}]</td>
+        <td>
+            <a href="[{$Think.const.APP_ADMIN_URL}]Admin/editadmin">编辑</a>
+        </td>
+    </tr>
+    [{/foreach}]
+</table>
+<div style="text-align:center;margin-top:15px;">[{$page}]</div>

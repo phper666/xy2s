@@ -1,0 +1,158 @@
+<nav class="ease2">
+    <ul>
+        <li class="blank-head"><a href="javascript:;"></a></li>
+        <li class="area">
+            <div>
+                <i class="nav-icons"><img src="[{$Think.const.IMG_URL}]zb.png"</img></i>
+                [{foreach userlist as $k=>$v }]
+                <div id="college">[{$v.school_name}]</div>
+                [{/foreach}]
+            </div>
+        </li>
+        <div id="xgpersonal" class="button" data-type="l" style="width:110px;">完善信息</div>
+        <div id="goodsfb" class="button" data-type="l" style="width:110px;">发布的商品</div>
+        <div id="xggoods" class="button" data-type="l" style="width:110px;">商品信息修改</div>
+        <div id="goodsdel" class="button" data-type="l" style="width:110px;">商品删除</div>
+        <div id="post" class="button" data-type="l" style="width:110px;">帖子管理</div>
+        <div id="msgtongzhi" class="button" data-type="l" style="width:110px;">消息通知<span style="color:red;">([{$tz}])</span></div>
+        <div id="modifypw" class="button" data-type="l" style="width:110px;">修改密码</div>
+        <div id="renzheng" class="button" data-type="l" style="width:110px;">认证</div>
+    </ul>
+</nav>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#xgpersonal").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xgpersonal";
+        });
+        $("#modifypw").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/modifypw";
+        });
+        $("#goodsfb").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsfb";
+        });
+        $("#xggoods").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/xggoods";
+        });
+        $("#post").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/post";
+        });
+        $("#goodsdel").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/goodsdel";
+        });
+        $("#msgtongzhi").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/msgtongzhi";
+        });
+        $("#renzheng").click(function () {
+            window.location.href = "[{$Think.const.APP_HOME_URL}]Personal/renzheng";
+        });
+    });
+</script>
+<div id="wp" class="wp" style="margin:120px 0 0 80px;font-size:15px;">
+    <div class="boardnav">
+        <div id="ct" class="wp cl">
+            <div class="mn">
+                <div id="threadlist" class="tl bm bmw">
+                    <div class="th"><table cellspacing="0" cellpadding="0"><tbody><tr><td>帖子管理</td></tr></tbody></table></div>
+                    <div class="bm_c">
+                        <table summary="forum_2" cellspacing="0" cellpadding="0" id="threadlisttableid">
+                            <tbody id="normalthread_1">
+                            <!--循环出当前用户的所有帖子-->
+                            [{foreach post as $k=>$v }]
+                            <tr>
+                                <td class="icn">
+                                    <a href="#" target="_blank"><img src="[{$Think.const.IMG_URL}]folder_new.gif"></a>
+                                </td>
+                                <th class="new">
+                                    <a href="[{$Think.const.APP_HOME_URL}]Forum/forum_reply?fac_id=[{$v.fac_id}]&fsc_id=[{$v.fsc_id}]&fp_id=[{$v.fp_id}]">[{$v.fp_biaoti}]</a>
+                                </th>
+                                <td width="20%" style="margin:0 0 0 100px;">[{$v.add_time}]</td>
+                                <td width="8%" class="bianji[{$v.fp_id}]" fp_id="[{$v.fp_id}]" style="cursor:pointer;">编辑</td>
+                                <td width="8%" class="del[{$v.fp_id}]" fp_id="[{$v.fp_id}]" style="cursor:pointer;">删除</td>
+                            </tr>
+                            <!--实例化编辑框和动态显示编辑框-->
+                            <script type="text/javascript">
+                                $('.bianji[{$v.fp_id}]').click(function(){
+                                    //实例化编辑框
+                                    var um = UM.getEditor("myEditor");
+
+                                    if($('.my_ed').css('display') == 'none'){
+                                        $('.my_ed').css('display','block');
+                                        $('.bianji[{$v.fp_id}]').html('取消编辑');
+                                    }else{
+                                        $('.bianji[{$v.fp_id}]').html('编辑');
+                                        $('.my_ed').css('display','none');
+                                    }
+                                });
+                            </script>
+                            [{/foreach}]
+                            </tbody>
+                        </table>
+                        <div style="margin:0 0 0 180px;">[{$page}]</div>
+                        <form action="[{$Think.const.APP_HOME_URL}]Personal/post" method="post">
+                            <!--隐藏传送的id-->
+                            <input type="hidden" name="fp_id" id="fp_id" >
+                            <!--style给定宽度可以影响编辑器的最终宽度-->
+                            <div class="my_ed" style="display:none;">
+                                <script type="text/plain" id="myEditor" style="width:860px;height:260px;"><p class="my_p"></p></script>
+                                <input style="margin:8px 0 0 800px;height:30px;width:50px;cursor:pointer;" type="submit" id="tijiao" value="提交">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--一个简单的jq，点击编辑就显示编辑框-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#normalthread_1 td').click(function(e){
+            var fp_id = $(e.target).attr('fp_id');
+            //如果是编辑，就发送到不同的地址接收
+            if($(e.target).attr('class') == 'bianji'+fp_id){
+                //用ajax把此帖子的内容查出来
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_HOME_URL}]Personal/post_msg",
+                    data: "fp_id=" + fp_id,
+                    dataType: 'json',
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('error');
+                    },
+                    success: function (msg) {
+                        $("#myEditor .my_p").html(msg.fp_content);
+                        $("#fp_id").attr('value',msg.fp_id);
+                    }
+                });
+            }
+
+            //如果是删除，就发送到不同的地址接收
+            if($(e.target).attr('class') == 'del'+fp_id){
+                if(confirm("确定要删除主题吗？无法恢复！")){
+                //用ajax把此帖子的内容查出来
+                $.ajax({
+                    type: "POST",
+                    url: "[{$Think.const.APP_HOME_URL}]Personal/post_del",
+                    data: "fp_id=" + fp_id,
+                    async: true, //默认为true 异步
+                    error: function () {
+                        alert('error');
+                    },
+                    success: function (msg) {
+                        if(msg == 'success'){
+                            alert('主题删除成功');
+                            window.location.reload();
+                        }else{
+                            alert('主题删除失败');
+                            window.location.reload();
+                        }
+                    }
+                });
+                }
+            }
+        });
+    });
+</script>
+
+

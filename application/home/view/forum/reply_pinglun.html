@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回帖评论</title>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+</head>
+<body>
+<div class="pinglun" style="margin:0 0 0 20px;background:#F7F5F5;display:block;">
+    <div class="pob cl" style="color:#2D64B3;font-size:15px;">
+        [{foreach fcomment as $k=>$v }]
+        [{if $v.fr_id != 0 }]
+        [{foreach user as $k1=>$v1 }]
+        [{if $v.user_id == $v1.user_id }]
+        <span class="user[{$k}]">[{$v1.username}]</span>
+        [{/if}]
+        [{/foreach}]
+        [{$v.fc_content}]
+        <div class="huifureply[{$k}]" style="margin:0px 0 0 400px;cursor:pointer;color:#2D64B3;font-size:15px;">2016-10-24 21:36:31&nbsp;&nbsp;<span>回复</span>
+        </div>
+        [{/if}]
+        <div style="border-bottom:1px dashed #646464;width:690px;margin:8px 0 8px 0;"></div>
+        <!--点击评论的回复就显示不同的文本-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".huifureply[{$k}]").click(function () {
+                    if ($(".huifureply[{$k}] span").html() == '回复') {
+                        $(".fayan").attr('value', '[{$Think.cookie.username}]回复 ' + $(".user[{$k}]").html() + ': ');
+                        $(".fayan").focus();
+                        $(".huifureply[{$k}] span").html('收起回复');
+
+                    } else {
+                        $(".fayan").attr('value', "[{$Think.cookie.username}]: ");
+                        $(".huifureply[{$k}] span").html('回复');
+                    }
+                });
+            });
+        </script>
+        [{/foreach}]
+    </div>
+</div>
+<div style="margin:20px 0 0 0">[{$page}]</div>
+<textarea name="fc_content" class="fayan" style="margin:10px 0 0 20px;border:1px solid #2D64B3;height:60px;width:680px;font-size:15px;"></textarea>
+<div class="fabiao"
+     style="border:1px solid #646464;width:30px;margin:5px 0 0 670px;font-size:15px;cursor:pointer;">发表
+</div>
+<!--一个简单的jq，点击回复就显示出评论，再次点击就不显示-->
+<script type="text/javascript">
+    $(".fayan").attr('value', '[{$Think.cookie.username}]: ');
+    $(".fabiao").click(function () {
+        var fc_content = $('.fayan').val();
+        var fac_id = [{$_GET['fac_id']}];
+        var fsc_id = [{$_GET['fsc_id']}];
+        var fp_id = [{$_GET['fp_id']}];
+        var user_id = [{$Think.cookie.user_id
+    }]
+        ;
+        var fr_id = [{$_GET['fr_id']}];
+        if (fc_content == '') {
+            alert('回复不能为空');
+            return false;
+        }
+
+        /*用ajax去回复别人，无刷新回复*/
+        $.ajax({
+            type: "POST",
+            url: "[{$Think.const.APP_HOME_URL}]Forum/forum_comment",
+            data: "fac_id=" + fac_id + "&fsc_id=" + fsc_id + "&fp_id=" + fp_id + "&user_id=" + user_id + "&fr_id=" + fr_id + "&fc_content=" + fc_content,
+            async: true,//异步开启
+            error: function () {
+                alert('出错');
+            },
+            success: function (msg) {
+                if (msg = 'success') {
+                    alert('回复成功');
+                    window.location.reload();
+                } else {
+                    alert('回复失败');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>意见反馈</title>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.min.js"></script>
+    <script src="[{$Think.const.STATIC_URL}]js/jquery.cookie.js"></script>
+    <style type="text/css">
+        body {
+        }
+
+        #main {
+            height: 500px;
+            width: 500px;
+            background-color: #fff;
+            border: 1px solid #DCDADA;
+            margin: auto;
+            padding: 10px 10px 10px 10px;
+        }
+
+        #main .content {
+            margin: 10px auto;
+            height: 300px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="header"><h2 style="text-align:center;">意见反馈</h2></div>
+<div id="main">亲爱的校友们：<br/>
+    &nbsp;&nbsp;如果你对我们网站有什么意见或者建议的，欢迎你反馈给我们。我们一定会尽最大的努力去改善。
+    <div class="content">
+        <form action="[{$Think.const.APP_HOME_URL}]Msg/addmsg" method="post" id="form">
+            <div>尊敬的[{$Think.Cookie.username}]用户:</div>
+            <div style="margin-top:10px;">您的反馈意见:<textarea style="border:1px solid #646464;width:440px;height:250px;margin:10px 0 0 30px;"
+                                                           name="suggest"></textarea></div>
+            <input style="font-size:18px;margin:6px 10px 0 340px;" type="reset"></div>
+            <input style="font-size:18px;margin:8px 0 0 420px;" id="sub" type="button" value="提交"></div>
+        </form>
+        <a style="text-decoration:none;margin-left:650px;font-size:20px;" href="[{$Think.const.APP_HOME_URL}]Index/index">返回首页</a>
+        <!--一个简单的jq用于判断用户是否登录，如果没登录就提交反馈意见-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(function () {
+                    $("#sub").click(function () {
+                        if ($.cookie('username') == null) {
+                            alert("请你先登录！");
+                            return false;
+                        } else {
+                            $("form").submit();
+                        }
+                    });
+                });
+            });
+        </script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+[{include file="Role/header"/}]  <!--包含公共头部文件-->
+<form action="[{$Think.const.APP_ADMIN_URL}]Role/addrole" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10" style="width:85%;">
+        <tr width="15%">
+            <td width="10%" class="tableleft">角色名</td>
+            <td><input type="text" name="role_name"/></td>
+        </tr>
+        <tr width="15%">
+            <td width="10%" class="tableleft">最高权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 0 }]
+                <input name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+        <tr width="25%">
+            <td width="10%" class="tableleft">一级权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 1 }]
+                <input name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+        <tr width="25%">
+            <td width="10%" class="tableleft">二级权限管理</td>
+            <td style="border:1px solid #DDDDDD;">
+                [{foreach authlist as $k=>$v }]
+                [{if $v.auth_level == 2 }]
+                <input name="[{$v.auth_id}]" type="checkbox" value="[{$v.auth_name}]"/>[{$v.auth_name}]&nbsp;&nbsp;&nbsp;&nbsp;
+                [{/if}]
+                [{/foreach}]
+            </td>
+        </tr>
+
+        <tr width="25%">
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button>
+                &nbsp;&nbsp;
+                <a href="[{$Think.const.APP_ADMIN_URL}]Role/rolelist" class="btn btn-success" name="backid"
+                   id="backid">返回列表</a>
+            </td>
+        </tr>
+    </table>
+</form>
