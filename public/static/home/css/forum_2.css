@@ -1,0 +1,170 @@
+#thread_subject{
+    font-size:15px;
+}
+
+.pl table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.pl .dt {
+    width: 100%;
+}
+
+.plm {
+    vertical-align: bottom !important;
+}
+
+.plc, .pls {
+    vertical-align: top;
+}
+
+.plc {
+    padding: 0 20px;
+}
+
+.pls {
+    width: 160px;
+    background: #E5EDF2;
+    overflow: hidden;
+    border-right: 1px solid #C2D5E3;
+}
+
+
+.pls .favatar {
+    background: transparent;
+    height: auto;
+    border-width: 0px;
+    overflow: visible;
+}
+
+.avatar1{
+    margin:0 0 10px 20px;
+}
+
+.pls p, .pls .pil, .pls .o {
+    margin: 5px 10px 5px 20px;
+}
+
+.pls p em, .pls dt em {
+    color: #F26C4F;
+}
+
+
+.ie6 .pls dd img, .ie7 .pls dd img {
+    margin-top: 2px;
+    width: expression(this.width > 65 ? 65:true);
+}
+
+.ad .pls {
+    background: #C2D5E3;
+    padding: 0;
+    height: 4px;
+}
+
+.ad .plc {
+    background: #E5EDF2;
+    padding: 0;
+    overflow: hidden;
+}
+
+.pl .pnv .pls {
+    background: #E5EDF2;
+    border: solid #C2D5E3;
+    border-width: 0 1px 1px 0;
+    line-height: 16px;
+}
+
+.pl .pnv .tns p {
+    font-size: 12px;
+}
+
+.pl .pnv .plc {
+    border-bottom: 1px solid #C2D5E3;
+}
+
+.pnh {
+    padding: 11px 20px;
+}
+
+.tnv {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#threadstamp {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: visible;
+}
+
+#threadstamp img {
+    position: absolute;
+    top: -20px;
+    right: 170px;
+}
+
+#pl_top .ad .pls, #pl_top .ad .plc {
+    height: 1px;
+    overflow: hidden;
+}
+
+#pl_top .pls {
+    text-indent: 15px;
+}
+
+.pi {
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    height: 16px;
+    border-bottom: 1px dashed #CDCDCD;
+}
+
+.pi strong a {
+    float: right;
+    margin-top: -6px;
+    padding: 4px 6px;
+    border: 1px solid #FFF;
+    font-weight: 400;
+}
+
+.pi strong a:hover {
+    border-color: #CDCDCD;
+}
+
+.pls .pi {
+    padding-left: 15px;
+}
+
+.t_f, .t_f td {
+    font-size: 14px;
+}
+
+
+.plhin:hover .hin {
+    opacity: 1;
+}
+
+.pob {
+    line-height: 36px;
+}
+
+.pob em {
+    float: left;
+}
+
+.pob em a {
+    padding: 5px 10px 5px 25px;
+}
+
+
+.fastre {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/fastreply.gif) no-repeat 0 50%;
+}
+
+.editp {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/edit.gif) no-repeat 4px 50%;
+}
+

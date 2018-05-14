@@ -1,0 +1,279 @@
+.container .release-icon-main{
+    text-align:center;
+}
+
+.container .release-icon-main img{
+    position:relative;
+    left:60px;
+    top:0px;
+    height:80px;
+    width:400px;
+}
+
+.release-title{
+    height:100px;
+    width:100px;
+    display:inline;
+    line-height:100px;
+    margin-left:360px;
+    font-size:18px;
+    color:#646464;
+    text-align:center;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+#uploadgoods{
+    position:relative;
+    left:40%;
+}
+
+/*.release-title .upload{
+    position:absolute;
+    top:115px;
+    left:380px;
+    opacity:0;  !*透明度*!
+    height:0px;
+    width:0px;
+}*/
+
+/*.upload-tupian{
+    height:100px;
+    width:100px;
+    border:1px solid #D0D0D0;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    font-size:20px;
+    position:absolute;
+    top:120px;
+    left:390px;
+    background:#D0D0D0;
+    line-height:130px;
+}*/
+
+/*.upload-tupian img{
+    height:40px;
+    width:40px;
+    position:absolute;
+    top:10px;
+    left:30px;
+}*/
+
+.upload-tupian:hover{
+    cursor:pointer;
+    color:#A8A9A9;
+}
+/*上传照片在前台接收*/
+#exec_target{
+    display:none;
+    border:0;
+    position:relative;
+    left:-70px;
+    width:150px;
+    height:140px;
+}
+
+#exec_target1{
+    display:none;
+    border:0;
+    position:relative;
+    left:-80px;
+    width:150px;
+    height:140px;
+}
+
+#feedback{
+    width:1200px;
+    margin:0 auto;
+}
+
+.photo-caution{
+    height:20px;
+    width:400px;
+    margin:25px 0 0 300px;
+    font-size:15px;
+}
+
+.goods-name{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:100px;
+    margin-left:200px;
+}
+
+.goods-name input{
+    font-size:14px;
+    height:35px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.goods-desc{
+    width:500px;
+    height:150px;
+    text-align:center;
+    margin-left:200px;
+    margin-top:10px;
+}
+
+.goods-desc .ms{
+    font-size:15px;
+    width:50px;
+    height:20px;
+    position:relative;
+    top:-60px;
+    display:inline;
+}
+
+.goods-desc textarea{
+    font-size:14px;
+    height:120px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.goods-place{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:0px;
+    margin-left:200px;
+}
+
+.goods-place input{
+    font-size:14px;
+    height:35px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.goods-price{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:10px;
+    margin-left:125px;
+}
+
+.goods-price input{
+    font-size:14px;
+    height:35px;
+    width:200px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.goods-category{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:10px;
+    margin-left:125px;
+}
+
+.goods-category select{
+    font-size:14px;
+    height:35px;
+    width:202px;
+    margin-left:18px;
+    border:1px solid #D0E0E2;
+}
+
+.goods-sale{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:10px;
+    margin-left:200px;
+}
+
+.goods-sale input{
+    font-size:14px;
+    height:35px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.lianxi{
+    height:30px;
+    width:500px;
+    margin:10px 0 0 224px;
+    font-size:15px;
+    border-bottom:1px solid #D0E0E2;
+}
+
+.user-tel{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:20px;
+    margin-left:200px;
+}
+
+.user-tel input{
+    font-size:14px;
+    height:35px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.user-qq{
+    font-size:15px;
+    width:500px;
+    height:50px;
+    text-align:center;
+    margin-top:10px;
+    margin-left:200px;
+}
+
+.user-qq input{
+    font-size:14px;
+    height:35px;
+    width:350px;
+    border:1px solid #D0E0E2;
+    margin-left:20px;
+}
+
+.rule{
+    height:20px;
+    width:200px;
+    margin:10px 0 0 318px;
+}
+
+.goods-fabu{
+    height:55px;
+    width:320px;
+    background:#646464;
+    border-radius: 20%;
+    -moz-border-radius: 20%;
+    -webkit-border-radius: 20%;
+    text-align:center;
+    line-height:50px;
+    font-size:25px;
+    margin:30px 0 0 320px;
+    color:#fff;
+}
+
+.goods-fabu:hover{
+    cursor:pointer;
+    background:#979898;
+}
+
+
+
+
+

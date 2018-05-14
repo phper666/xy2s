@@ -1,0 +1,1204 @@
+* {
+    word-wrap: break-word;
+}
+
+body {
+    background: #FFF url("http://localhost/ershou/tp5/public/static/home/img/background.png") repeat-x 0 0;
+}
+
+body, input, button, select, textarea {
+    font: 12px/1.5 Tahoma, 'Microsoft Yahei', 'Simsun';
+    color: #444;
+}
+
+textarea {
+    resize: none;
+}
+
+body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    empty-cells: show;
+    border-collapse: collapse;
+}
+
+caption, th {
+    text-align: left;
+    font-weight: 400;
+}
+
+ul li, .xl li {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+}
+
+em, cite, i {
+    font-style: normal;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a img {
+    border: none;
+}
+
+label {
+    cursor: pointer;
+}
+
+.z {
+    float: left;
+    font-size:15px;
+}
+
+.y {
+    float: right;
+}
+
+.cl:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.cl {
+    zoom: 1;
+}
+
+.hidefocus {
+    outline: none;
+}
+
+hr {
+    display: block;
+    clear: both;
+    *margin-top: -8px !important;
+    *margin-bottom: -8px !important;
+}
+
+.mn hr, .sd hr {
+    margin: 0 10px;
+}
+
+.area hr {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+hr.l {
+    height: 1px;
+    border: none;
+    background: #CDCDCD;
+    color: #CDCDCD;
+}
+
+hr.l2 {
+    height: 2px;
+}
+
+hr.l3 {
+    height: 3px;
+}
+
+hr.da {
+    height: 0;
+    border: none;
+    border-top: 1px dashed #CDCDCD;
+    background: transparent;
+    color: transparent;
+}
+
+hr.bk {
+    margin-bottom: 10px !important;
+    *margin-bottom: 2px !important;
+    height: 0;
+    border: none;
+    border-top: 1px solid #FFF;
+    background: transparent;
+    color: transparent;
+}
+
+.n .sd hr.bk {
+    border-top-color: #F9F9F9;
+}
+
+hr.m0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.wx, .ph {
+    font-family: 'Microsoft YaHei', 'Hiragino Sans GB', 'STHeiti', Tahoma, 'SimHei', sans-serif;
+    font-weight: 100;
+}
+
+.ph {
+    font-size: 20px;
+}
+
+.mt {
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+.pipe {
+    margin: 0 5px;
+    color: #CCC;
+}
+
+.xs0 {
+    font-family: Arial;
+    font-size: 0.83em;
+    -webkit-text-size-adjust: none;
+}
+
+.xs1 {
+    font-size: 12px !important;
+}
+
+.xs2 {
+    font-size: 14px !important;
+}
+
+.xs3 {
+    font-size: 16px !important;
+}
+
+.xg1, .xg1 a {
+    color: #999 !important;
+}
+
+.xg1 .xi2 {
+    color: #369 !important;
+}
+
+.xg2 {
+    color: #666;
+}
+
+.xi1, .onerror {
+    color: #F26C4F;
+}
+
+.xi2, .xi2 a, .xi3 a {
+    color: #369;
+}
+
+.xw0 {
+    font-weight: 400;
+}
+
+.xw1 {
+    font-weight: 700;
+}
+
+.bbda {
+    border-bottom: 1px dashed #CDCDCD;
+}
+
+.btda {
+    border-top: 1px dashed #CDCDCD;
+}
+
+.bbs {
+    border-bottom: 1px solid #CDCDCD !important;
+}
+
+.bts {
+    border-top: 1px dashed #CDCDCD !important;
+}
+
+.bw0 {
+    border: none !important;
+}
+
+.bw0_all, .bw0_all th, .bw0_all td {
+    border: none !important;
+}
+
+.bg0_c {
+    background-color: transparent !important;
+}
+
+.bg0_i {
+    background-image: none !important;
+}
+
+.bg0_all {
+    background: none !important;
+}
+
+.brs, .avt img, .oshr {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.brm {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.brw {
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.mtn {
+    margin-top: 5px !important;
+}
+
+.mbn {
+    margin-bottom: 5px !important;
+}
+
+.mtm {
+    margin-top: 10px !important;
+}
+
+.mbm {
+    margin-bottom: 10px !important;
+}
+
+.mtw {
+    margin-top: 20px !important;
+}
+
+.mbw {
+    margin-bottom: 20px !important;
+}
+
+.ptn {
+    padding-top: 5px !important;
+}
+
+.pbn {
+    padding-bottom: 5px !important;
+}
+
+.ptm {
+    padding-top: 10px !important;
+}
+
+.pbm {
+    padding-bottom: 10px !important;
+}
+
+.ptw {
+    padding-top: 20px !important;
+}
+
+.pbw {
+    padding-bottom: 20px !important;
+}
+
+.avt img {
+    padding: 2px;
+    width: 48px;
+    height: 48px;
+    background: #FFF;
+    border: 1px solid;
+    border-color: #F2F2F2 #CDCDCD #CDCDCD #F2F2F2;
+}
+
+.avtm img {
+    width: 120px;
+    height: auto;
+}
+
+.avts img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.emp {
+    padding: 20px 10px;
+}
+
+.emp a {
+    color: #369;
+    text-decoration: underline !important;
+}
+
+.vm {
+    vertical-align: middle;
+}
+
+.vm * {
+    vertical-align: middle;
+}
+
+.hm {
+    text-align: center;
+}
+
+.alt, .alt th, .alt td {
+    background-color: #F2F2F2;
+}
+
+.cur1 {
+    cursor: pointer;
+}
+
+.ie6 .sec .p_pop {
+    white-space: expression(this.offsetWidth >= 220 ? 'normal':'nowrap');
+    width: expression(this.offsetWidth >= 220 ? 200:'auto');
+}
+
+.rq {
+    color: red;
+}
+
+
+.px, .pt {
+    padding: 2px 4px;
+    line-height: 17px;
+}
+
+.px {
+    height: 17px;
+}
+
+.pxs {
+    width: 30px !important;
+}
+
+.fdiy .tfm .px, .fdiy .tfm .pt {
+    width: auto;
+}
+
+.p_fre {
+    width: auto !important;
+}
+
+.pt {
+    overflow-y: auto;
+}
+
+div.pt {
+    height: 100px;
+    line-height: 100px;
+}
+
+.ps, select {
+    padding: 2px 2px 2px 1px;
+}
+
+.pts {
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.cmt .pts {
+    width: 60%;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.pn {
+    vertical-align: middle;
+    overflow: hidden;
+    margin-right: 3px;
+    padding: 0;
+    height: 23px;
+    border: 1px solid #999;
+    background: #E5E5E5 url(http://localhost/ershou/tp5/public/static/home/img/pn.png) repeat-x 0 0;
+    cursor: pointer;
+    -moz-box-shadow: 0 1px 0 #E5E5E5;
+    -webkit-box-shadow: 0 1px 0 #E5E5E5;
+    box-shadow: 0 1px 0 #E5E5E5;
+}
+
+.pn:active {
+    background-position: 0 -23px;
+}
+
+.ie6 .pn {
+    overflow-x: visible;
+    width: 0;
+}
+
+.pn em, .pn span, .pn strong {
+    padding: 0 10px;
+    line-height: 21px;
+}
+
+.pn em, .pn strong {
+    font-weight: 700;
+}
+
+.ie7 .pn em, .ie7 .pn span, .ie7 .pn strong {
+    padding: 0 5px;
+    line-height: 18px;
+}
+
+a.pn {
+    height: 21px;
+    line-height: 21px;
+    color: #444 !important;
+}
+
+a.pn:hover {
+    text-decoration: none;
+}
+
+.ie6 a.pn {
+    width: auto;
+}
+
+.ie6 a.pn em, .ie6 a.pn span, .ie6 a.pn strong {
+    display: block;
+}
+
+.ie7 a.pn em, .ie7 a.pn span, .ie7 a.pn strong {
+    line-height: 21px;
+}
+
+.pnc, a.pnc {
+    border-color: #235994;
+    background-color: #06C;
+    background-position: 0 -48px;
+    color: #FFF !important;
+}
+
+.pnc:active {
+    background-position: 0 -71px;
+}
+
+.pnpost .pn {
+    height: 26px;
+}
+
+.pr, .pc {
+    vertical-align: middle;
+    margin: 0 5px 1px 0;
+    padding: 0;
+}
+
+.ie6 .pr, .ie6 .pc, .ie7 .pr, .ie7 .pc {
+    margin-right: 2px;
+}
+
+.lb {
+    margin-right: 20px;
+}
+
+
+.sslt a {
+    width: 54px;
+}
+
+.sslt select {
+    width: 60px;
+}
+
+.sltm {
+    padding: 5px 11px 5px 10px;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    text-align: left;
+}
+
+.sltm li {
+    padding: 2px 0;
+    color: #666;
+    cursor: pointer;
+}
+
+.sltm li:hover {
+    color: #369;
+}
+
+.sltm li.current {
+    color: #F26C4F;
+}
+
+.tfm {
+    width: 100%;
+}
+
+.tfm caption, .tfm th, .tfm td {
+    vertical-align: top;
+    padding: 7px 0;
+}
+
+.tfm caption h2 {
+    font-size: 16px;
+}
+
+.vt th, .vt td {
+    vertical-align: top;
+}
+
+.tfm th {
+    padding-top: 9px;
+    padding-right: 5px;
+    width: 130px;
+}
+
+.tfm th .rq {
+    float: right;
+    font-size: 14px;
+}
+
+.tfm .pt, .tfm .px {
+    margin-right: 3px;
+    width: 330px;
+}
+
+.tfm .c, .tfm .tedt, .m_c .tfm .tedt {
+    width: 338px;
+}
+
+.tfm .d {
+    clear: both;
+    margin: 5px 0;
+    color: #999;
+}
+
+.tfm .d em {
+    margin-left: 5px;
+    color: red;
+}
+
+.tfm .d strong {
+    margin-left: 5px;
+}
+
+.tfm .d a {
+    color: #369;
+}
+
+.tfm .p {
+    text-align: right;
+}
+
+.tfm .pcl label {
+    display: block;
+    padding: 0 2px 5px;
+}
+
+.tfm .pcl .pc {
+    margin-right: 5px;
+    padding: 0;
+}
+
+.tfm .l th, .tfm .l td {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.bn .tfm caption, .bn .tfm th, .bn .tfm td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pbt {
+    margin-bottom: 10px;
+}
+
+.ie6 .pbt .ftid a, .ie7 .pbt .ftid a {
+    margin-top: 1px;
+}
+
+#custominfo.mtn {
+    margin-bottom: -5px;
+}
+
+.altw {
+    width: 350px;
+}
+
+.altw .fltc {
+    margin-bottom: 0;
+    padding: 8px;
+}
+
+.pbnv {
+    float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 400px;
+    padding: 7px 0;
+}
+
+.pbl {
+    overflow: hidden;
+    margin: 9px 0;
+    width: 621px;
+    border-width: 1px 0 1px 1px;
+    border-style: solid;
+    border-color: #CCC;
+    background: #FFF;
+}
+
+.pbl li {
+    float: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px;
+    width: 196px;
+    height: 300px;
+    border-right: 1px solid #CCC;
+}
+
+.wp {
+    margin: 0 90px;
+    width: 960px;
+}
+
+#wp .wp {
+    width: 100%;
+}
+
+#toptb {
+    min-width: 960px;
+    border-bottom: 1px solid #CDCDCD;
+    background: #F2F2F2;
+    line-height: 28px;
+}
+
+#toptb a {
+    float: left;
+    padding: 0 4px;
+    height: 28px;
+}
+
+#toptb a.showmenu {
+    padding-right: 15px;
+}
+
+#toptb a.hover {
+    background-color: #FFF;
+}
+
+#toptb .pipe {
+    float: left;
+    display: none;
+}
+
+#hd {
+    margin:0 90px;
+    border-bottom: 0 solid #C2D5E3;
+}
+
+#hd .wp {
+    padding: 80px 0 0;
+}
+
+.hdc {
+    min-height: 30px;
+}
+
+.ie6 .hdc {
+    height: 70px;
+}
+
+#hd h2 {
+    padding: 0 20px 0px 0;
+    float: left;
+}
+
+#space #hd h2 {
+    margin-top: 0;
+}
+
+#hd .fastlg {
+    padding-top: 10px;
+}
+
+#scbar {
+    overflow: hidden;
+    height: 42px;
+    line-height: 42px;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #E9EFF5;
+    background: #E8EFF5;
+}
+
+.scbar_icon_td {
+    width: 21px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/search.png) no-repeat 0 -50px;
+}
+
+.scbar_txt_td, .scbar_type_td {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/search.png) repeat-x 0 -93px;
+}
+
+#scbar_txt {
+    width: 400px;
+    border: 1px solid #FFF;
+    outline: none;
+}
+
+.scbar_narrow #scbar_txt {
+    width: 260px;
+}
+
+.scbar_btn_td {
+    width: 38px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/search.png) no-repeat 8px -142px;
+}
+
+#scbar_btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent none;
+    box-shadow: none;
+}
+
+#scbar_btn strong {
+    line-height: 84px;
+}
+
+.scbar_type_td {
+    width: 61px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/search.png) no-repeat 0 -193px;
+}
+
+#scbar_type {
+    display: block;
+    padding-left: 10px;
+    text-align: left;
+    text-decoration: none;
+}
+
+#scbar_type_menu {
+    margin-top: -8px;
+}
+
+#scbar_hot {
+    padding-left: 8px;
+    height: 45px;
+    overflow: hidden;
+}
+
+#scbar_hot strong, #scbar_hot a {
+    float: left;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+#nv {
+    overflow: hidden;
+    height: 33px;
+    background: #2B7ACD url("http://localhost/ershou/tp5/public/static/home/img/nv.png") no-repeat 0 0;
+}
+
+#nv li {
+    float: left;
+    padding-right: 1px;
+    height: 33px;
+    line-height: 33px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/nv_a.png) no-repeat 100% 0;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.ie_all #nv li {
+    line-height: 36px;
+}
+
+.ie6 #nv li {
+    line-height: 33px;
+}
+
+#nv li a {
+    text-decoration:none;
+    float: left;
+    padding: 0 15px;
+    height: 33px;
+}
+
+#nv li a {
+    color: #FFF;
+}
+
+#nv li span {
+    display: none;
+}
+
+#nv li.a {
+    margin-left: -1px;
+    background: #005AB4 url("http://localhost/ershou/tp5/public/static/home/img/nv_a.png") no-repeat 50% -33px;
+}
+
+#nv li.a a {
+    color: #FFF;
+}
+
+#nv li a:hover {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/nv_a.png) no-repeat 50% -66px;
+}
+
+#nv li.hover a:hover, #nv li.hover a {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/nv_a.png) no-repeat 50% -99px;
+}
+
+#nv li.a .icon_down {
+    background: url(http://localhost/ershou/tp5/public/static/home/img/arr_w.gif) no-repeat 50% 50%;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    margin-left: 3px;
+}
+
+.ie6 #nv li.a .icon_down {
+    height: 24px;
+    vertical-align: middle;
+}
+
+#ct {
+    min-height: 300px;
+}
+
+.ie6 #ct {
+    height: 300px;
+}
+
+.mn {
+    overflow: hidden;
+}
+
+#nv_userapp .ct2_a .mn, .ct2_a_r .mn {
+    margin-right: 0;
+    width: 810px;
+}
+
+.ct3_a .mn {
+    float: left;
+    margin-left: 20px;
+    width: 565px;
+}
+
+.ct3_a .sd {
+    float: right;
+    width: 220px;
+}
+
+#nv_home .ct3_a .sd .bm {
+    margin-right: 10px;
+    border: none;
+}
+
+#nv_home .ct3_a .sd .bm_c {
+    padding: 10px 0;
+}
+
+.mw {
+    width: 100%;
+    float: none;
+}
+
+.mnw {
+    clear: both;
+    border-top: 1px solid #CCC;
+}
+
+.mnh {
+    width: 643px;
+    background: #F2F2F2;
+    margin-bottom: 0;
+}
+
+#ft {
+    padding: 10px 0 50px;
+    border-top: 1px solid #CDCDCD;
+    line-height: 1.8;
+    color: #666;
+}
+
+#nv_home #ft, .pg_announcement #ft, .pg_modcp #ft, .pg_portalcp #ft, .pg_ranklist #ft, #nv_userapp #ft {
+    border-top: none;
+}
+
+.bm, .bn {
+    margin-bottom: 10px;
+}
+
+.bm {
+    border: 1px solid #CDCDCD;
+    background: #FFF;
+}
+
+.bm_c {
+    padding: 10px;
+}
+
+.drag {
+}
+
+.bm_h .o {
+    float: right;
+    width: 30px;
+}
+
+.bm_h .o img {
+    float: right;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.bm_h .i {
+    padding-left: 10px;
+}
+
+.bm_h .pn {
+    margin-top: 4px;
+}
+
+.bm_h {
+    padding: 0 10px;
+    height: 31px;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #C2D5E3;
+    background: #F2F2F2;
+    line-height: 31px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bmw {
+    border: 1px solid #CDCDCD;
+}
+
+.bmw .bm_h {
+    border-top-color: #FFF;
+    border-right: 1px solid #FFF;
+    border-bottom-color: #C2D5E3;
+    border-left: 1px solid #FFF;
+    background: #E5EDF2;
+}
+
+.bmw .bm_h a {
+    color: #369;
+}
+
+.bml .bm_h {
+    padding-top: 5px;
+    border: none;
+    background: transparent;
+}
+
+.bml .bm_c {
+    padding-top: 0;
+}
+
+.bmn {
+    padding: 7px 10px;
+    border-color: #C2D5E3;
+    background: #E5EDF2;
+}
+
+.fl {
+    border: 1px solid #CDCDCD;
+    border-top: none;
+    background: #FFF;
+}
+
+.fl .bm {
+    margin-bottom: 0;
+    border: none;
+}
+
+.fl .bm_h {
+    border-width: 1px 0;
+    border-color: #C2D5E3;
+    background: #E5EDF2 url("http://localhost/ershou/tp5/public/static/home/img/titlebg.png") repeat-x 0 0;
+}
+
+.fl .bm_c, #online .bm_c, .lk .bm_c {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.bm2 .bm2_b {
+    float: left;
+    width: 49%;
+    border: 1px solid #CDCDCD;
+}
+
+.bm2 .bm2_b_y {
+    float: right;
+}
+
+.bw0 {
+    background: transparent;
+}
+
+.bw {
+    padding: 0 15px;
+}
+
+#pt {
+    margin: 2px 0;
+    height: 29px;
+    border: none;
+    background: transparent;
+    line-height: 29px;
+}
+
+#pt .z {
+    padding-right: 10px;
+}
+
+#pt .z a, #pt .z em, #pt .z span {
+    float: left;
+    height: 29px;
+}
+
+#pt .z em {
+    width: 20px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/pt_item.png) no-repeat 3px 10px;
+    line-height: 200px;
+    overflow: hidden;
+    margin:0 70px;
+}
+
+.nvhm {
+    width: 16px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/search.png) no-repeat 0 0;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+.tns {
+    padding: 10px 0;
+}
+
+.tns table {
+    width: 100%;
+}
+
+.tns th, .tns td {
+    text-align: center;
+    font-size: 12px;
+}
+
+.sd .tns th, .sd .tns td {
+    width: 110px !important;
+}
+
+.tns th {
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+}
+
+.tns th p, .tns td p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.pls .tns {
+    padding: 0 10px 10px;
+}
+
+.pls .tns th p, .pls .tns td p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.ih .icn {
+    float: left;
+    width: 60px;
+}
+
+.ih dl {
+    margin-left: 60px;
+}
+
+.ih dt {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ih dd {
+    padding-bottom: 1em;
+}
+
+.ih dd strong {
+    margin: 0 2em 0 4px;
+    color: #C00;
+}
+
+.myo li {
+    height: auto;
+    line-height: 1.5;
+}
+
+.myo img {
+    margin-bottom: -1px;
+}
+
+.myo a {
+    color: #369;
+}
+
+
+
+.lk img {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 88px;
+    height: 31px;
+}
+
+.lk p {
+    color: #666;
+}
+
+.lk .m li {
+    clear: left;
+    padding: 0 0 10px 98px;
+}
+
+.lk .m img {
+    display: inline;
+    margin-top: 4px;
+    margin-top: 1px \9;
+    margin-left: -98px;
+}
+
+.lk .x li {
+    float: left;
+    margin-right: 5px;
+    width: 88px;
+    height: 1.5em;
+    overflow: hidden;
+}
+
+.lk_logo .lk_content {
+    float: left;
+}
+
+.nav_li a{
+    text-decoration:none;
+}
+
+
+
+

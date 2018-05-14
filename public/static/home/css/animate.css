@@ -1,0 +1,352 @@
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceInUp {
+    0% {
+        opacity: .8;
+        -webkit-transform: translateY(200px);
+        transform: translateY(200px);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(-15px);
+        transform: translateY(-15px);
+    }
+
+    80% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: .8;
+        -webkit-transform: translateY(200px);
+        -ms-transform: translateY(200px);
+        transform: translateY(200px);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(-15px);
+        -ms-transform: translateY(-15px);
+        transform: translateY(-15px);
+    }
+
+    80% {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.bounceInUp {
+    -webkit-animation-name: bounceInUp;
+    animation-name: bounceInUp;
+}/*page style begin*/
+
+.pages {
+    text-align: center;
+}
+
+.page-arrow, .page-num, .pages span {
+    display: inline-block;
+    _zoom: 1;
+    _display: inline;
+    height: 40px;
+    font-size: 1.33em;
+    color: #FFF;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-num, .page-arrow {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #FFC500;
+    text-decoration: none;
+}
+
+.pages span {
+    margin: 0 5px;
+    color: #12836C;
+}
+
+.page-num.cur {
+    background-color: #44C1A5;
+}
+
+.page-num:hover {
+    background-color: #44C1A5;
+}
+
+.page-arrow {
+    width: 85px;
+    height: 40px;
+    background: url("/resource/image/page-arrow.png") no-repeat;
+}
+
+.arrow-left {
+    text-align: right;
+    background-position: -10px -10px;
+}
+
+.arrow-left:after {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-left:hover {
+    background-position: -10px -110px;
+}
+
+.arrow-right {
+    text-align: left;
+    background-position: -10px -60px;
+}
+
+.arrow-right:before {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-right:hover {
+    background-position: -10px -160px;
+}
+
+/*page style end *//*page style begin*/
+
+.pages {
+    text-align: center;
+}
+
+.page-arrow, .page-num, .pages span {
+    display: inline-block;
+    _zoom: 1;
+    _display: inline;
+    height: 40px;
+    font-size: 1.33em;
+    color: #FFF;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-num, .page-arrow {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #FFC500;
+    text-decoration: none;
+}
+
+.pages span {
+    margin: 0 5px;
+    color: #12836C;
+}
+
+.page-num.cur {
+    background-color: #44C1A5;
+}
+
+.page-num:hover {
+    background-color: #44C1A5;
+}
+
+.page-arrow {
+    width: 85px;
+    height: 40px;
+    background: url("/resource/image/page-arrow.png") no-repeat;
+}
+
+.arrow-left {
+    text-align: right;
+    background-position: -10px -10px;
+}
+
+.arrow-left:after {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-left:hover {
+    background-position: -10px -110px;
+}
+
+.arrow-right {
+    text-align: left;
+    background-position: -10px -60px;
+}
+
+.arrow-right:before {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-right:hover {
+    background-position: -10px -160px;
+}
+
+/*page style end *//*page style begin*/
+
+.pages {
+    text-align: center;
+}
+
+.page-arrow, .page-num, .pages span {
+    display: inline-block;
+    _zoom: 1;
+    _display: inline;
+    height: 40px;
+    font-size: 1.33em;
+    color: #FFF;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-num, .page-arrow {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #FFC500;
+    text-decoration: none;
+}
+
+.pages span {
+    margin: 0 5px;
+    color: #12836C;
+}
+
+.page-num.cur {
+    background-color: #44C1A5;
+}
+
+.page-num:hover {
+    background-color: #44C1A5;
+}
+
+.page-arrow {
+    width: 85px;
+    height: 40px;
+    background: url("/resource/image/page-arrow.png") no-repeat;
+}
+
+.arrow-left {
+    text-align: right;
+    background-position: -10px -10px;
+}
+
+.arrow-left:after {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-left:hover {
+    background-position: -10px -110px;
+}
+
+.arrow-right {
+    text-align: left;
+    background-position: -10px -60px;
+}
+
+.arrow-right:before {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-right:hover {
+    background-position: -10px -160px;
+}
+
+/*page style end *//*page style begin*/
+
+.pages {
+    text-align: center;
+}
+
+.page-arrow, .page-num, .pages span {
+    display: inline-block;
+    _zoom: 1;
+    _display: inline;
+    height: 40px;
+    font-size: 1.33em;
+    color: #000000;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page-num, .page-arrow {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #ffffff;
+    text-decoration: none;
+}
+
+.pages span {
+    margin: 0 5px;
+    color: #12836C;
+}
+
+.page-num.cur {
+    background-color: #64CBB3;
+}
+
+.page-num:hover {
+    background-color: #64CBB3;
+}
+
+.page-arrow {
+    width: 85px;
+    height: 40px;
+    background: url("/resource/image/page-arrow.png") no-repeat;
+}
+
+.arrow-left {
+    text-align: right;
+    background-position: -10px -10px;
+}
+
+.arrow-left:after {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-left:hover {
+    background-position: -10px -110px;
+}
+
+.arrow-right {
+    text-align: left;
+    background-position: -10px -60px;
+}
+
+.arrow-right:before {
+    content: "";
+    margin-right: .5em;
+}
+
+.arrow-right:hover {
+    background-position: -10px -160px;
+}
+
+/*page style end */

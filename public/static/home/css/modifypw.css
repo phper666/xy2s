@@ -1,0 +1,44 @@
+#xgpw{
+    position:relative;
+    top:100px;
+    left:400px;
+    height:300px;
+    width:500px;
+    text-align:center;
+}
+
+#xgpw .xinpw{
+    margin-top:15px;
+    font-size:18px;
+}
+
+#xgpw .xinpw input{
+    font-size:16px;
+    height:22px;
+    border:1px solid #666666;
+}
+
+#xgpw .tijiao{
+    margin:15px 0 0 335px;
+    height:25px;
+    width:50px;
+    font-size:15px;
+    line-height:25px;
+    background:#fff;
+}
+
+#xgpw .tijiao input{
+    position:absolute;
+    left:335px;
+    font-size:20px;
+    height:25px;
+    width:50px;
+    background:#fff;
+    border:1px solid #646464;
+}
+
+#xgpw .tijiao input:hover{
+    cursor:pointer;
+    border-bottom:solid 1px #333;
+}
+

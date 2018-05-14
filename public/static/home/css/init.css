@@ -1,0 +1,42 @@
+html, body, div, header, footer, form, p, input, button, h1, h2, h3, h4, h5, h6, ul, li, img, textarea {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    outline: none;
+}
+ul,li{list-style: none;}
+article, aside, dialog, footer, header, section, footer, nav, figure, menu {
+    display:block;
+}
+.group:before,.group:after{content:'';display: block;line-height: 0;height: 0;font-size: 0;clear: both;}
+.group{*zoom:1;}
+a {
+    text-decoration: none;
+	-webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.ershou-favorite,.enshr_ph,.photo-wr img,.release-button,.search-submit,.page-num {
+	-webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+/*-- 可访问性的文字隐藏 开始 --*/
+.visually_hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+/*baidu*/
+#BAIDU_DUP_wrapper_u1972103_0{
+    margin-top: 30px;
+    padding-left: 9px;
+}

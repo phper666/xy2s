@@ -1,0 +1,122 @@
+#pt .y {
+    width: 550px;
+    height: 29px;
+    overflow: hidden;
+}
+
+#chart {
+    margin-bottom: 5px;
+}
+
+.chart {
+    padding-left: 22px;
+    background: url(http://localhost/ershou/tp5/public/static/home/img/chart.png) no-repeat 0 50%;
+    color: #999;
+}
+
+.chart em {
+    color: #444;
+}
+
+#an {
+    margin-bottom: 5px;
+}
+
+#an dt {
+    display: none;
+}
+
+#an li {
+    float: right;
+    clear: both;
+    width: 526px;
+    text-align: right;
+}
+
+#an li span {
+    float: left;
+    width: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#an li em {
+    float: left;
+    width: 75px;
+    color: #999;
+}
+
+.fl_tb {
+    width: 100%;
+}
+
+.fl_tb td {
+    padding: 10px 0;
+}
+
+.fl_icn {
+    padding-right: 10px !important;
+    width: 31px;
+}
+
+.fl_by {
+    width: 220px;
+}
+
+.fl_by div {
+    margin-left: 10px;
+    width: 210px;
+    padding-left: 8px;
+    word-break: keep-all;
+    word-wrap: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fl_by div .xi2 {
+    zoom: 1;
+}
+
+.fl_by cite {
+    display: block;
+}
+
+.fl_i {
+    width: 150px;
+    text-align: right;
+}
+
+.fl_i em {
+    display: block;
+    width: 5em;
+}
+
+.fl .i_z {
+    margin-right: 8px;
+    padding-right: 8px;
+    border-right: 1px solid #C2D5E3;
+}
+
+.fl_icn_g {
+    float: left;
+    width: 31px;
+}
+
+.fl_g {
+    vertical-align: top;
+}
+
+.fl_g dl {
+    margin-left: 31px;
+    padding-left: 10px;
+}
+
+.fl_g dt {
+    font-weight: 700;
+}
+
+.fl_row td {
+    border-top: 1px dashed #CDCDCD;
+}

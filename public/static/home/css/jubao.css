@@ -1,0 +1,52 @@
+#form{
+    height:500px;
+    width:500px;
+    text-align:center;
+    border:1px solid #646464;
+    margin:auto;
+}
+
+.goods-id{
+    padding:10px;
+    margin:10px auto;
+}
+
+.user-name{
+    margin:10px 0 0 -340px;
+    font-size:20px;
+}
+
+.gr-man-name{
+    margin:10px 0 0 -380px;
+    font-size:20px;
+}
+
+.gr-content{
+
+}
+
+.gr-content div{
+    height:150px;
+    width:100px;
+    margin:10px 0 0 5px;
+    font-size:20px;
+}
+
+.gr-content textarea{
+    border:1px solid #646464;
+    height:200px;
+    width:350px;
+    font-size:18px;
+    margin:-120px 0 0 40px;
+}
+
+#form input[type="reset"]{
+    margin:10px 0 0 230px;
+}
+
+#form input[type="submit"]{
+    position:absolute;
+    top:445px;
+    left:480px;
+    margin:10px 0 0 350px;
+}

@@ -1,0 +1,98 @@
+.item-list1 {
+    width: 80%;
+    margin:auto;
+    margin-bottom: 40px;
+}
+
+.items1 {
+    font-size: 0;
+    list-style: none;
+}
+
+.item1 {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    text-align: left;
+    margin-left:50px;
+}
+
+.item1 .img1 {
+    display: block;
+    width: 150;
+    height: 150px;
+}
+
+.img1 img {
+    width: 100%;
+    height: 100%;
+}
+
+.item1 .info1 {
+    padding: 10px;
+    background-color: #FFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info1>div{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.info1 .price1 {
+    padding-right: 3px;
+    width: 110px;
+    height: 30px;
+    background-color: #EB5055;
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    font-size: 16px;
+    color: #FFF;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    overflow: visible;
+}
+
+.info1 .price1:before {
+    content: "￥";
+}
+
+.info1 .name1 {
+    margin-bottom: 6px;
+    width: 100%;
+    height: 1.6em;
+    line-height: 1.6em;
+    font-size: 15px;
+}
+
+.name1 a {
+    color: #1B816C;
+    text-decoration: none;
+}
+
+.name1 a:hover {
+    color: #ED4E51;
+}
+
+.info1 .department, .info1 .place1 {
+    width: 50%;
+    float: left;
+    font-size: 1em;
+    color: #858D8E;
+}
+
+/*分页样式*/
+.pages{
+    font-size:15px;
+    position:relative;
+    top:15px;
+}
